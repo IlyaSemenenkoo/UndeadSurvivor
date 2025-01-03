@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5089651295153736396}
   - component: {fileID: 4551736831724898676}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Weapone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1255615949
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 1772703093, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 2506051270854920116}
   - component: {fileID: 3803257136251685365}
   - component: {fileID: 2007853708188034151}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,8 +156,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -181354853
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 978012912, guid: 99a24620d31e5ce4e823c32d11e17c2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -209,9 +209,9 @@ GameObject:
   - component: {fileID: 3928027904648111236}
   - component: {fileID: 2744943984300297857}
   - component: {fileID: 574486728026145693}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerPrefab
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

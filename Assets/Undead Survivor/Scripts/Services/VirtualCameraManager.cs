@@ -1,12 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
 public class VirtualCameraManager : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera _virtualCamera;
+    private GameObject _target = null;
     
     public static VirtualCameraManager Singleton
     {
@@ -31,10 +29,13 @@ public class VirtualCameraManager : MonoBehaviour
         Singleton = this;
     }
 
-    public void FollowThis(Transform target)
+    public void FollowThis(GameObject target)
     {
-        Debug.Log("FollowThis");
-        _virtualCamera.Follow = target;
-        _virtualCamera.LookAt = target;
+        if (_target != target)
+        {
+            _target = target;
+            _virtualCamera.Follow = target.transform;
+            _virtualCamera.LookAt = target.transform;
+        }
     }
 }
