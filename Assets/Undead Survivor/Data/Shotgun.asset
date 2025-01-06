@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d07695ca3a4f0241bf18236e8240dda, type: 3}
   m_Name: Shotgun
   m_EditorClassIdentifier: 
-  Damage: 0
-  LifeTime: 0
-  AttackCulldown: 0
-  MaxAmmoInMagazine: 0
-  MagazineAmount: 0
+  Damage: 5
+  LifeTime: 1.5
+  AttackCulldown: 1
+  MaxAmmoInMagazine: 12
+  MagazineAmount: 2

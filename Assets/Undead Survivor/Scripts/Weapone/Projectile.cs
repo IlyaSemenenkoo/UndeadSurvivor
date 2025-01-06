@@ -9,12 +9,14 @@ public class Projectile : NetworkBehaviour
     [SerializeField] private NetworkTransform _networkTransform;
     private Vector2 _direction;
     private int _damage;
+    private float _speed;
 
-    public void Initialize(Vector2 direction, float lifeTime, int damage)
+    public void Initialize(Vector2 direction, float lifeTime, int damage, float speed)
     {
         _lifeTime = lifeTime;
         _direction = direction;
         _damage = damage;
+        _speed = speed;
     }
 
     public override void FixedUpdateNetwork()
@@ -23,7 +25,8 @@ public class Projectile : NetworkBehaviour
         {
             if (_lifeTime > 0)
             {
-                _networkTransform.transform.position += new Vector3(_direction.x, _direction.y, 0) * Runner.DeltaTime;
+                _networkTransform.transform.position += new Vector3(_direction.x, _direction.y, 0) * Runner.DeltaTime * _speed;
+                _lifeTime -= Runner.DeltaTime;
             }
             else DeleteBullet();
         }

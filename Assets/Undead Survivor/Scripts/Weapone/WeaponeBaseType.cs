@@ -50,7 +50,7 @@ public abstract class WeaponeBaseType : NetworkBehaviour
             (runner, spawnedObject) =>
             {
                 var bullet = spawnedObject.GetComponent<Projectile>();
-                bullet.Initialize(direction, _settings.LifeTime, _settings.Damage);
+                bullet.Initialize(direction, _settings.LifeTime, _settings.Damage, _settings.Speed);
             });
     }
     

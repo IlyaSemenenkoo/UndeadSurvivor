@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d07695ca3a4f0241bf18236e8240dda, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  gameName: 
-  maxPlayers: 0
-  gameSpeed: 0
+  Damage: 10
+  LifeTime: 1
+  AttackCulldown: 0.7
+  MaxAmmoInMagazine: 20
+  MagazineAmount: 2
