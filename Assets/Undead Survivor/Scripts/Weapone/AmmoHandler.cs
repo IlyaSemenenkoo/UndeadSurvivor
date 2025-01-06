@@ -3,17 +3,18 @@ using Fusion;
 using UnityEngine;
 using System.Collections;
 
-public class AmmoHandler : MonoBehaviour
+public class AmmoHandler : NetworkBehaviour
 {
-    [Networked] public int AmmoAmount {get; private set;}
-    [Networked] public int MagazineAmount {get; private set;}
+    [Networked] private int AmmoAmount {get; set;}
+    [Networked] private int MagazineAmount { get; set; }
     private int _maxAmmoInMagazine;
+    [SerializeField] private WeaponeSettings _settings;
 
-    public void Initialize(int MaxAmmoInMagazine, int magazineAmount)
+    public override void Spawned()
     {
-        _maxAmmoInMagazine = MaxAmmoInMagazine;
-        MagazineAmount = magazineAmount;
-        AmmoAmount = MaxAmmoInMagazine;
+        _maxAmmoInMagazine = _settings.MaxAmmoInMagazine;
+        MagazineAmount = _settings.MagazineAmount;
+        AmmoAmount = _settings.MaxAmmoInMagazine;
     }
 
     public bool MagazineIsEmpty()
