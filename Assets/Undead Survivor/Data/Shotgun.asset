@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   Damage: 5
-  LifeTime: 1.5
-  AttackCulldown: 1
+  LifeTime: 1.2
+  AttackCulldown: 0.7
   MaxAmmoInMagazine: 12
   MagazineAmount: 2
+  Speed: 7

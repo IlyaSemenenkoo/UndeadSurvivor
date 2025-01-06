@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b15967e85d3e8546be34c9b76d2a8b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 5fd0fb9508ccbac449e5a8a58e0a5716, type: 2}
+  _settings: {fileID: 11400000, guid: 937bfd04f15ce6a408e84907b5d60133, type: 2}
 --- !u!114 &6400644407038359477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   _ammoHandler: {fileID: 6685931840094945780}
   _projectilePrefab: {fileID: 2554075116843378213, guid: 6993d7bbad38f8a44934d5db2e1508fa, type: 3}
   _shootPoint: {fileID: 221378500953610317}
-  _settings: {fileID: 11400000, guid: 5fd0fb9508ccbac449e5a8a58e0a5716, type: 2}
+  _settings: {fileID: 11400000, guid: 937bfd04f15ce6a408e84907b5d60133, type: 2}
 --- !u!114 &206175304764215318
 MonoBehaviour:
   m_ObjectHideFlags: 0

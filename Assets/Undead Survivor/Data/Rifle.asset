@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Rifle
   m_EditorClassIdentifier: 
   Damage: 7
-  LifeTime: 2
-  AttackCulldown: 0.5
+  LifeTime: 1
+  AttackCulldown: 0.1
   MaxAmmoInMagazine: 40
   MagazineAmount: 2
+  Speed: 15
