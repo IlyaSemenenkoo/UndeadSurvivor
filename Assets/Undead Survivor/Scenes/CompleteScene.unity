@@ -171,7 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8a481f58bfebc429fdda29e8b445e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coll: {fileID: 0}
 --- !u!66 &253594447
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -4573,7 +4572,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.8851015, g: 0.9151092, b: 0.9622642, a: 0}
+  m_BackGroundColor: {r: 0.09803922, g: 0.36078432, b: 0.25490198, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -4598,7 +4597,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.185185
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -4889,7 +4888,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8a481f58bfebc429fdda29e8b445e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coll: {fileID: 0}
 --- !u!66 &616361936
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -9225,12 +9223,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 677011016}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.75432414, y: 1.1590399, z: 0.04912725}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.8397927, y: 12.1347, z: -0.008710012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2142603421}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &677011019
 MonoBehaviour:
@@ -9303,7 +9301,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 8.185185
+    OrthographicSize: 6
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -9440,22 +9438,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3eb25048e1b6fe4ea7462424c79196e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLive: 0
-  gameTime: 0
-  maxGameTime: 300
-  playerId: 0
-  health: 0
-  maxHealth: 100
-  level: 0
-  kill: 0
-  exp: 0
-  nextExp: 03000000050000000a0000006400000096000000d20000001801000068010000c201000058020000
-  pool: {fileID: 994102858}
-  player: {fileID: 0}
-  uiLevelUp: {fileID: 0}
-  uiResult: {fileID: 0}
-  uiJoy: {fileID: 0}
-  enemyCleaner: {fileID: 2029806073}
 --- !u!4 &861663792
 Transform:
   m_ObjectHideFlags: 0
@@ -9532,10 +9514,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31abe4b87cfccc844b0f6b5530115a53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabs:
-  - {fileID: 8995485532009590293, guid: 731a50f9cefda2d4d95f127db144b33b, type: 3}
-  - {fileID: 7308793349900079891, guid: fe2a05f2bb2a19c418e2015e390757a0, type: 3}
-  - {fileID: 4122565992612807282, guid: 00818f04400b8354c96f7dbafdd74b81, type: 3}
 --- !u!4 &994102859
 Transform:
   m_ObjectHideFlags: 0
@@ -13861,7 +13839,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8a481f58bfebc429fdda29e8b445e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coll: {fileID: 0}
 --- !u!1 &1212774349
 GameObject:
   m_ObjectHideFlags: 0
@@ -14245,14 +14222,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 565e769cd05dc9942ab9e4f4a932e019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockCharacter:
-  - {fileID: 0}
-  - {fileID: 0}
-  unlockCharacter:
-  - {fileID: 0}
-  - {fileID: 0}
-  uiNotice: {fileID: 0}
-  achives: 
 --- !u!4 &1541605106
 Transform:
   m_ObjectHideFlags: 0
@@ -14531,25 +14500,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19d327430a4b46947bc818d52e3b9ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmClip: {fileID: 8300000, guid: 4559935c00ef8e94b846e2e03e39f0d0, type: 3}
-  bgmVolume: 0.1
-  bgmPlayer: {fileID: 0}
-  bgmEffect: {fileID: 0}
-  sfxClips:
-  - {fileID: 8300000, guid: 291608b8d286e2a4580ff36324455ce2, type: 3}
-  - {fileID: 8300000, guid: 0bddcb411d826e14bb26d40ae45d8e22, type: 3}
-  - {fileID: 8300000, guid: 6b7eaf4532a2f614595ad58d2b86efc4, type: 3}
-  - {fileID: 8300000, guid: 64795b87003c2324fa0814fbc336066c, type: 3}
-  - {fileID: 8300000, guid: c8a3fe17a6641ec48b38fb455a40a223, type: 3}
-  - {fileID: 8300000, guid: 14f24de2a9a70154e96297de25e2184c, type: 3}
-  - {fileID: 8300000, guid: d1bef3102d08ba944ac7bcac65733a26, type: 3}
-  - {fileID: 8300000, guid: 6f0c572d865b4664db7a460972bc4768, type: 3}
-  - {fileID: 8300000, guid: 4b294d59d2399014daa718b35c9de73b, type: 3}
-  - {fileID: 8300000, guid: 2c4bc183a5df5aa4baf7c4fcf236a2de, type: 3}
-  sfxVolume: 0.5
-  channels: 16
-  sfxPlayers: []
-  channelIndex: 0
 --- !u!1 &1938858651
 GameObject:
   m_ObjectHideFlags: 0
@@ -14599,7 +14549,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8a481f58bfebc429fdda29e8b445e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coll: {fileID: 0}
 --- !u!66 &1938858654
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -18894,9 +18843,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47719f10317d1e6478c26499a09a5dd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10000000
-  per: -1
-  rigid: {fileID: 0}
 --- !u!61 &2029806075
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19055,6 +19001,7 @@ Transform:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 1390173392}
+  - {fileID: 677011018}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
@@ -19064,4 +19011,3 @@ SceneRoots:
   - {fileID: 952815353}
   - {fileID: 2142603421}
   - {fileID: 2116342440}
-  - {fileID: 677011018}

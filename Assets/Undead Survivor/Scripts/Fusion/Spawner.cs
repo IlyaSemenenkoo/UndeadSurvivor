@@ -3,7 +3,6 @@ using Fusion.Sockets;
 using System;
 using System.Collections.Generic;
 using Fusion.Addons.Physics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

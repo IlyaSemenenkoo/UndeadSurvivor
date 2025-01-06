@@ -18,12 +18,6 @@ public class GameLogic : NetworkBehaviour, IPlayerJoined, IPlayerLeft
             _spawnedCharacters.Add(player, networkPlayerObject);
         }
         Debug.Log("Player joined");
-
-        if (Runner.LocalPlayer == player)
-        {
-            Debug.Log("Player joined and camera");
-            VirtualCameraManager.Singleton.FollowThis(networkPlayerObject.transform);
-        }
     }
 
     public void PlayerLeft(PlayerRef player)
