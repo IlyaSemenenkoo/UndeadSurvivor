@@ -6,8 +6,8 @@ using UnityEngine;
 public class HealthManager : NetworkBehaviour, IHealth
 {
     [SerializeField] private int _maxHealth = 100;
-    [SerializeField]private DeathManager _deathManager;
-    [Networked] public int CurrentHealth { get; private set; }
+    [SerializeField] private DeathManager _deathManager;
+    [Networked] public int CurrentHealth { get; private set; } = 20;
 
     public override void Spawned()
     {
@@ -20,7 +20,7 @@ public class HealthManager : NetworkBehaviour, IHealth
 
     public void SubtractHP(int damage)
     {
-        if (Object.HasStateAuthority && !_deathManager.IsDead)
+        if (!_deathManager.IsDead)
         {
             CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
             if (CurrentHealth <= 0)
@@ -32,7 +32,7 @@ public class HealthManager : NetworkBehaviour, IHealth
 
     public void AddHP(int heal)
     {
-        if (Object.HasStateAuthority && !_deathManager.IsDead)
+        if (!_deathManager.IsDead)
         {
             CurrentHealth = Mathf.Min(CurrentHealth + heal, _maxHealth);
         }
