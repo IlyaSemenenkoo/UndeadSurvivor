@@ -3,24 +3,17 @@ using Fusion;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public enum AnimationType 
-{
-    idle = 0,
-    run = 1,
-    died = 2,
-}
-
-public class PlayerAnimController : NetworkBehaviour
+public class PlayerAnimController : BaseAnimController
 {
     [SerializeField]private NetworkMecanimAnimator _mecanimAnimator;
     [Networked, OnChangedRender(nameof(SyncAnimation))] public AnimationType CurrentAnimation { get; private set; }
 
-    private void SyncAnimation()
+    protected override void SyncAnimation()
     {
         _mecanimAnimator.Animator.CrossFade(CurrentAnimation.ToString(), 0f);
     }
 
-    public void SetAnimation(AnimationType type)
+    public override void SetAnimation(AnimationType type)
     {
         if(!HasInputAuthority) return;
         if (CurrentAnimation != type)

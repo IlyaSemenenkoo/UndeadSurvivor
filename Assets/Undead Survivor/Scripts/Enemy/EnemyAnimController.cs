@@ -3,35 +3,23 @@ using Fusion;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public enum AnimationTypeEnemy 
+public class EnemyAnimController : BaseAnimController
 {
-    run = 0,
-    died = 1,
-}
+    [SerializeField] protected NetworkMecanimAnimator _mecanimAnimator;
+    [Networked, OnChangedRender(nameof(SyncAnimation))] public AnimationType CurrentAnimation { get; private set; }
 
-public class EnemyAnimController : NetworkBehaviour
-{
-    [SerializeField]private NetworkMecanimAnimator _mecanimAnimator;
-    [Networked, OnChangedRender(nameof(SyncAnimation))] public AnimationTypeEnemy CurrentAnimation { get; private set; }
-
-    private void SyncAnimation()
+    protected override void SyncAnimation()
     {
         _mecanimAnimator.Animator.CrossFade(CurrentAnimation.ToString(), 0f);
     }
 
-    public void SetAnimation(AnimationTypeEnemy type)
+    public override void SetAnimation(AnimationType type)
     {
-        if(!HasInputAuthority) return;
+        if(!Runner.IsServer) return;
         if (CurrentAnimation != type)
         {
-            RPC_ChangeAnimationType(type);
+            CurrentAnimation = type;
+            _mecanimAnimator.Animator.CrossFade(CurrentAnimation.ToString(), 0f);
         }
     }   
-
-    [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
-    private void RPC_ChangeAnimationType(AnimationTypeEnemy type)
-    {
-        CurrentAnimation = type;
-        _mecanimAnimator.Animator.CrossFade(CurrentAnimation.ToString(), 0f);
-    }
 }
