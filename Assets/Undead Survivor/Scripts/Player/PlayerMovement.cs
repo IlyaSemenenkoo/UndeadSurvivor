@@ -12,9 +12,9 @@ using Vector3 = UnityEngine.Vector3;
 public class PlayerMovement : NetworkBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField]private NetworkRigidbody2D _networkRigidbody;
-    [SerializeField]private PlayerAnimController _playerAnimController;
-    [SerializeField]private Transform _transform;
+    [SerializeField] private NetworkRigidbody2D _networkRigidbody;
+    [SerializeField] private PlayerAnimController _playerAnimController;
+    [SerializeField] private Transform _transform;
     
     [Networked, OnChangedRender(nameof(SyncRotation))] public Vector3 Rotation { get; private set;}
     
@@ -50,20 +50,20 @@ public class PlayerMovement : NetworkBehaviour
 
     private void ChangeRotation(Vector2 direction)
     {
-        Vector3 _tempRotation = Vector3.zero;
+        Vector3 TempRotation = Vector3.zero;
         if(!HasInputAuthority) return;
         if (direction.x < 0)
         {
-            _tempRotation = new Vector3(-1, 1, 1);
+            TempRotation = new Vector3(-1, 1, 1);
         }
         else if (direction.x > 0)
         {
-            _tempRotation = new Vector3(1, 1, 1);
+            TempRotation = new Vector3(1, 1, 1);
         }
 
-        if (_tempRotation != Vector3.zero && _tempRotation != Rotation)
+        if (TempRotation != Vector3.zero && TempRotation != Rotation)
         {
-            RPC_SyncRotation(_tempRotation);
+            RPC_SyncRotation(TempRotation);
         }
     }
 

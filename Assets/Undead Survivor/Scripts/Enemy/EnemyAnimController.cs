@@ -3,9 +3,9 @@ using Fusion;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerAnimController : BaseAnimController
+public class EnemyAnimController : BaseAnimController
 {
-    [SerializeField]private NetworkMecanimAnimator _mecanimAnimator;
+    [SerializeField] protected NetworkMecanimAnimator _mecanimAnimator;
     [Networked, OnChangedRender(nameof(SyncAnimation))] public AnimationType CurrentAnimation { get; private set; }
 
     protected override void SyncAnimation()
@@ -15,17 +15,11 @@ public class PlayerAnimController : BaseAnimController
 
     public override void SetAnimation(AnimationType type)
     {
-        if(!HasInputAuthority) return;
+        if(!Runner.IsServer) return;
         if (CurrentAnimation != type)
         {
-            RPC_ChangeAnimationType(type);
+            CurrentAnimation = type;
+            _mecanimAnimator.Animator.CrossFade(CurrentAnimation.ToString(), 0f);
         }
     }   
-
-    [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
-    private void RPC_ChangeAnimationType(AnimationType type)
-    {
-        CurrentAnimation = type;
-        _mecanimAnimator.Animator.CrossFade(CurrentAnimation.ToString(), 0f);
-    }
 }

@@ -3,23 +3,18 @@ using UnityEngine;
 
 public class DeathManager : MonoBehaviour
 {
-    private PlayerAnimController _playerAnimController;
+    [SerializeField] private BaseAnimController _animController;
     
     public bool IsDead { get; private set; }
-
-    private void Awake()
-    {
-        _playerAnimController = GetComponent<PlayerAnimController>();
-    }
 
     public void Die()
     {
         if (!IsDead)
         {
             IsDead = true;
-            if (_playerAnimController != null)
+            if (_animController != null)
             {
-                _playerAnimController.SetAnimation(AnimationType.died);
+                _animController.SetAnimation(AnimationType.died);
             }
             Debug.Log($"{gameObject.name} is dead ");
         }
