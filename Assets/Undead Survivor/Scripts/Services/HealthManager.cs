@@ -8,7 +8,6 @@ public class HealthManager : NetworkBehaviour, IHealth
     [SerializeField] private int _maxHealth = 100;
     [SerializeField]private DeathManager _deathManager;
     [Networked] public int CurrentHealth { get; private set; }
-    public event Action<int, int> OnHealthChanged;
 
     public override void Spawned()
     {
@@ -17,7 +16,6 @@ public class HealthManager : NetworkBehaviour, IHealth
             CurrentHealth = _maxHealth;
         }
         
-        NotifyHealthChanged();
     }
 
     public void SubtractHP(int damage)
@@ -29,7 +27,6 @@ public class HealthManager : NetworkBehaviour, IHealth
             {
                 _deathManager.Die();
             }
-            NotifyHealthChanged();
         }
     }
 
@@ -38,20 +35,6 @@ public class HealthManager : NetworkBehaviour, IHealth
         if (Object.HasStateAuthority && !_deathManager.IsDead)
         {
             CurrentHealth = Mathf.Min(CurrentHealth + heal, _maxHealth);
-            NotifyHealthChanged();
-        }
-    }
-    
-    private static void OnNetworkHealthChanged()
-    {
-        //changed.Behaviour.NotifyHealthChanged();
-    }
-
-    private void NotifyHealthChanged()
-    {
-        if (OnHealthChanged != null)
-        {
-            OnHealthChanged.Invoke(CurrentHealth, _maxHealth);
         }
     }
 }

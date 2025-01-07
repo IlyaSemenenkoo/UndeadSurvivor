@@ -1,15 +1,16 @@
+using System.ComponentModel.Design;
 using Fusion;
 using Fusion.Addons.Physics;
 using UnityEngine; 
 
 public class EnemyMovement : NetworkBehaviour
 {
-    [SerializeField] private float _speed;
     [SerializeField] private NetworkRigidbody2D _networkRigidbody;
-    [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private Transform _enemyTransform;
-    [SerializeField] private float _detectionRadius;
     private Transform _target;
+    [SerializeField] private EnemySettings _settings;
+
+    private float lastAttackTime;
     
     [Networked, OnChangedRender(nameof(SyncRotation))] public Vector3 Rotation { get; private set;}
     
@@ -27,13 +28,21 @@ public class EnemyMovement : NetworkBehaviour
 
         if (_target != null)
         {
+            if (Vector2.Distance(transform.position, _target.position) <= _settings.AttackRadius)
+            {
+                if (Time.time - lastAttackTime > _settings.AttackCulldown)
+                {
+                    AttackPlayer();
+                }
+            }
             MoveTowardsTarget();
+            ChangeRotation();
         }
     }
 
     private void FindClosestPlayer()
     {
-        Collider2D hit = Runner.GetPhysicsScene2D().OverlapCircle(this.transform.position, _detectionRadius, _playerLayer);
+        Collider2D hit = Runner.GetPhysicsScene2D().OverlapCircle(this.transform.position, _settings.DetectionRadius, _settings.PlayerLayer);
 
         if (hit != null)
         {
@@ -43,37 +52,45 @@ public class EnemyMovement : NetworkBehaviour
         {
             _target = null;
         }
+        
+        
     }
 
     private void MoveTowardsTarget()
     {
         Vector2 direction = (_target.position - this.transform.position).normalized;
-        _networkRigidbody.Teleport(_networkRigidbody.RBPosition + new Vector3(direction.x * _speed, direction.y * _speed, 0) * Time.fixedDeltaTime, null);
+        _networkRigidbody.Teleport(_networkRigidbody.RBPosition + new Vector3(direction.x * _settings.Speed, direction.y * _settings.Speed, 0) * Time.fixedDeltaTime, null);
     }
     
-    private void ChangeRotation(Vector2 direction)
+    private void ChangeRotation()
     {
         if(!Runner.IsServer) return;
         Vector3 TempRotation = Vector3.zero;
-        if (direction.x < 0)
-        {
-            TempRotation = new Vector3(-1, 1, 1);
-        }
-        else if (direction.x > 0)
+        if (_target.position.x < transform.position.x)
         {
             TempRotation = new Vector3(1, 1, 1);
+        }
+        else if (_target.position.x > transform.position.x)
+        {
+            TempRotation = new Vector3(-1, 1, 1);
         }
 
         if (TempRotation != Vector3.zero && TempRotation != Rotation)
         {
-            RPC_SyncRotation(TempRotation);
+            Rotation = TempRotation;
+            _enemyTransform.transform.localScale = TempRotation;
         }
     }
-    
-    [Rpc(RpcSources.StateAuthority, RpcTargets.InputAuthority)]
-    private void RPC_SyncRotation(Vector3 rotation)
+
+    private void AttackPlayer()
     {
-        Rotation = rotation;
-        _enemyTransform.transform.localScale = rotation;
+        if(!Runner.IsServer) return;
+         lastAttackTime = Time.time;
+
+         if (_target.TryGetComponent(out HealthManager HealthManager))
+         {
+             HealthManager.SubtractHP(_settings.AttackDamage);
+             Debug.Log($"Враг атакует игрока {_target.name}, наносит {_settings.AttackDamage} урона");
+         }
     }
 }
