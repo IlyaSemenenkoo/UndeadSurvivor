@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyMovement : NetworkBehaviour
 {
-    [SerializeField] private NetworkRigidbody2D _networkRigidbody;
+    [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private Transform _enemyTransform;
     private Transform _target;
     [SerializeField] private EnemySettings _settings;
@@ -59,7 +59,7 @@ public class EnemyMovement : NetworkBehaviour
     private void MoveTowardsTarget()
     {
         Vector2 direction = (_target.position - this.transform.position).normalized;
-        _networkRigidbody.Teleport(_networkRigidbody.RBPosition + new Vector3(direction.x * _settings.Speed, direction.y * _settings.Speed, 0) * Time.fixedDeltaTime, null);
+        _rigidbody.velocity = direction * _settings.Speed;
     }
     
     private void ChangeRotation()

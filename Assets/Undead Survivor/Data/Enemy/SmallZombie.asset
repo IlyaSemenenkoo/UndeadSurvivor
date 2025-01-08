@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5efafbb2b59f37e469fd925a68656dcc, type: 3}
   m_Name: SmallZombie
   m_EditorClassIdentifier: 
-  Speed: 0
+  Speed: 3
   PlayerLayer:
     serializedVersion: 2
-    m_Bits: 0
-  DetectionRadius: 0
-  AttackRadius: 0
-  AttackCulldown: 0
-  AttackDamage: 0
+    m_Bits: 8
+  DetectionRadius: 30
+  AttackRadius: 1
+  AttackCulldown: 1
+  AttackDamage: 2
