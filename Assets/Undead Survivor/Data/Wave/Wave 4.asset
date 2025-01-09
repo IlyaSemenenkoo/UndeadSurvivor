@@ -18,7 +18,7 @@ MonoBehaviour:
     SpawnDelay: 4
     SpawnCount: 10
   - ObjectPrefab:
-      RawGuidValue: 00000000000000000000000000000000
+      RawGuidValue: d1fb7b08fefab864cb615a0251cf54c7
     SpawnDelay: 6
     SpawnCount: 8
   - ObjectPrefab:
@@ -26,7 +26,7 @@ MonoBehaviour:
     SpawnDelay: 10
     SpawnCount: 4
   - ObjectPrefab:
-      RawGuidValue: 00000000000000000000000000000000
+      RawGuidValue: 5c71d4fae121a3c488087cfbcff7baae
     SpawnDelay: 10
     SpawnCount: 5
   WaveTime: 60

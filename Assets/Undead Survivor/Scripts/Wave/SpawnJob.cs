@@ -23,10 +23,12 @@ public class SpawnJob
 
     public void Tick()
     {
-        if (SpawnTimer <= 0)
+        if (SpawnTimer <= 0 && SpawnCount != 0)
         {
             int pos = Random.Range(0, SpawnPoints.Length);
             Runner.Spawn(ObjectPrefab, SpawnPoints[pos].position, Quaternion.identity);
+            SpawnTimer = SpawnDelay;
+            SpawnCount--;
         }
         else
         {

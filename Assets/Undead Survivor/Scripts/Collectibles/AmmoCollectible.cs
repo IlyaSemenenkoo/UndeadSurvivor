@@ -8,9 +8,9 @@ public class AmmoCollectible : BaseCollectibleType
     {
         if(!Runner.IsServer) return;
 
-        if (other.gameObject.TryGetComponent<AmmoHandler>(out AmmoHandler ammoHandler))
+        if (other.gameObject.TryGetComponent(out PlayerMovement playerMovement))
         {
-            ammoHandler.AddAmmo(_ammo);
+            playerMovement.GetComponentInChildren<SpriteRenderer>().gameObject.GetComponentInChildren<AmmoHandler>().AddAmmo(_ammo);
             Destroy(other.gameObject);
         }
     }

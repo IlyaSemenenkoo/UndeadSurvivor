@@ -13,13 +13,17 @@ public class BombCollectible : BaseCollectibleType
 
         if (other.gameObject.TryGetComponent<PlayerMovement>(out PlayerMovement playerMovement))
         {
-            
+            Detonate();
             Destroy(other.gameObject);
         }
     }
 
     private void Detonate()
     {
-        Collider2D hits = Runner.GetPhysicsScene2D().OverlapCircle(this.transform.position, _damageRadius, _layer);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(this.transform.position, _damageRadius, _layer);
+        foreach (var hit in hits)
+        {
+            hit.GetComponent<HealthManager>().SubtractHP(_damage);
+        }
     }
 }
