@@ -3,12 +3,14 @@ using Fusion;
 using UnityEngine;
 
 
-public class HealthManager : NetworkBehaviour, IHealth
+public abstract class HealthManager : NetworkBehaviour, IHealth
 {
     [SerializeField] private int _maxHealth = 100;
     [SerializeField] private DeathManager _deathManager;
-    [Networked] public int CurrentHealth { get; private set; } = 20;
+    [Networked, OnChangedRender(nameof(SyncHp))] public int CurrentHealth { get; private set; } = 20;
+    protected abstract void SyncHp();
 
+    
     public override void Spawned()
     {
         if (Object.HasStateAuthority)

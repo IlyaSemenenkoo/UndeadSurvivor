@@ -121,9 +121,9 @@ GameObject:
   - component: {fileID: 4114937498459954805}
   - component: {fileID: 5028231751135453917}
   - component: {fileID: 7976322710490033387}
-  - component: {fileID: 6336082655793482672}
   - component: {fileID: 2053636117962086587}
   - component: {fileID: 580372925708219555}
+  - component: {fileID: 2399073123267749861}
   m_Layer: 0
   m_Name: BigZombie
   m_TagString: Untagged
@@ -216,8 +216,8 @@ MonoBehaviour:
   - {fileID: 9135614197956148665}
   - {fileID: 5028231751135453917}
   - {fileID: 7976322710490033387}
-  - {fileID: 6336082655793482672}
   - {fileID: 580372925708219555}
+  - {fileID: 2399073123267749861}
 --- !u!70 &4114937498459954805
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 338e424ec1a8c5e4b83f2c71288fa685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _networkRigidbody: {fileID: 9135614197956148665}
+  _rigidbody: {fileID: 0}
   _enemyTransform: {fileID: 2719181948406293291}
   _settings: {fileID: 11400000, guid: 37d84abed2ac9a6458921db9d6dad030, type: 2}
   _Rotation: {x: 0, y: 0, z: 0}
@@ -283,21 +283,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mecanimAnimator: {fileID: 580372925708219555}
   _CurrentAnimation: 1
---- !u!114 &6336082655793482672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6475283516069341468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0f40af9bb91f454c9c87f4a3e684152, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 100
-  _deathManager: {fileID: 2053636117962086587}
-  _CurrentHealth: 50
 --- !u!114 &2053636117962086587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,3 +314,18 @@ MonoBehaviour:
   SyncSettings: 79
   StateHashes: 
   TriggerHashes: 
+--- !u!114 &2399073123267749861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6475283516069341468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01ee1dd9168cc94da6df62189ee84f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 30
+  _deathManager: {fileID: 2053636117962086587}
+  _CurrentHealth: 30

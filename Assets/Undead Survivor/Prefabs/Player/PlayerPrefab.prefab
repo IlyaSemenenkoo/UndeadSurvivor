@@ -120,11 +120,11 @@ GameObject:
   - component: {fileID: 8624542399308471498}
   - component: {fileID: 1685494470029447466}
   - component: {fileID: 2810915068746030522}
-  - component: {fileID: 114781833716788385}
   - component: {fileID: 968251201812491468}
   - component: {fileID: 3928027904648111236}
   - component: {fileID: 2744943984300297857}
   - component: {fileID: 574486728026145693}
+  - component: {fileID: 2875232159086817547}
   m_Layer: 3
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -228,21 +228,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mecanimAnimator: {fileID: 2744943984300297857}
   _CurrentAnimation: 0
---- !u!114 &114781833716788385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8900809516290072473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0f40af9bb91f454c9c87f4a3e684152, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 100
-  _deathManager: {fileID: 968251201812491468}
-  _CurrentHealth: 0
 --- !u!114 &968251201812491468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,8 +262,8 @@ MonoBehaviour:
   - {fileID: 8624542399308471498}
   - {fileID: 1685494470029447466}
   - {fileID: 2810915068746030522}
-  - {fileID: 114781833716788385}
   - {fileID: 2744943984300297857}
+  - {fileID: 2875232159086817547}
 --- !u!114 &2744943984300297857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,6 +317,21 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 0
+--- !u!114 &2875232159086817547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8900809516290072473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76873f276256bdc4e8591741be5a0e9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 40
+  _deathManager: {fileID: 968251201812491468}
+  _CurrentHealth: 40
 --- !u!1001 &1539604177032116404
 PrefabInstance:
   m_ObjectHideFlags: 0
