@@ -1,15 +1,25 @@
-using System.Runtime.InteropServices.ComTypes;
+using System;
 using Fusion;
 using UnityEngine;
 using System.Collections;
 
 public class AmmoHandler : NetworkBehaviour
 {
-    [Networked] private int AmmoAmount {get; set;}
+    [Networked, OnChangedRender(nameof(SyncAmmo))] private int AmmoAmount {get; set;}
     [Networked] private int MagazineAmount { get; set; }
     private int _maxAmmoInMagazine;
     [SerializeField] private WeaponeSettings _settings;
+    
+    public event Action<int, int> OnAmmoChangedEvent;
 
+    private void SyncAmmo()
+    {
+        if (HasInputAuthority)
+        {
+            OnAmmoChangedEvent?.Invoke(AmmoAmount, MagazineAmount * _maxAmmoInMagazine);
+        }
+    }
+    
     public override void Spawned()
     {
         _maxAmmoInMagazine = _settings.MaxAmmoInMagazine;
