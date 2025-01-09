@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AmmoBar : MonoBehaviour
 {
-    [SerializeField] private TextMeshPro _ammoText;
+    [SerializeField] private TextMeshProUGUI _ammoText;
     
     private AmmoHandler _ammoHandler;
 
