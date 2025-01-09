@@ -41,4 +41,9 @@ public class AmmoHandler : NetworkBehaviour
         AmmoAmount = _maxAmmoInMagazine;
         MagazineAmount -= 1;
     }
+
+    public void AddAmmo(int ammo)
+    {
+        MagazineAmount += ammo;
+    }
 }

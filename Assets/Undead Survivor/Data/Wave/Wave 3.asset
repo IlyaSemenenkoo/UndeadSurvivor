@@ -9,14 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5efafbb2b59f37e469fd925a68656dcc, type: 3}
-  m_Name: SmallZombie
+  m_Script: {fileID: 11500000, guid: a8d5894bed1c4324e9fa91b3c6a1be87, type: 3}
+  m_Name: Wave 3
   m_EditorClassIdentifier: 
-  Speed: 3
-  PlayerLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  DetectionRadius: 30
-  AttackRadius: 1
-  AttackCulldown: 1
-  AttackDamage: 2
+  _SpawnData: []
+  WaveTime: 20

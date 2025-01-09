@@ -12,7 +12,7 @@ using Vector3 = UnityEngine.Vector3;
 public class PlayerMovement : NetworkBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField] private NetworkRigidbody2D _networkRigidbody;
+    [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private PlayerAnimController _playerAnimController;
     [SerializeField] private Transform _transform;
     
@@ -36,7 +36,7 @@ public class PlayerMovement : NetworkBehaviour
         if (GetInput(out NetworkInputData data) && _playerAnimController.CurrentAnimation != AnimationType.died)
         {
             ChangeRotation(data.MoveDirection);
-            _networkRigidbody.Teleport(_networkRigidbody.RBPosition + new Vector3(data.MoveDirection.x * _speed, data.MoveDirection.y * _speed, 0) * Time.fixedDeltaTime, null);
+            _rigidbody.velocity = data.MoveDirection * _speed;
             if (data.MoveDirection != Vector2.zero)
             {
                 _playerAnimController.SetAnimation(AnimationType.run);
