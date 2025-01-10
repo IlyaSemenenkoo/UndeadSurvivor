@@ -9,7 +9,20 @@ public class WaveManager : NetworkBehaviour
     [SerializeField] private Transform[] _spawnPoints;
     private List<SpawnJob> _jobs = new List<SpawnJob>();
     private int _currentWave;
-    private TickTimer _tickTimer;
+
+    [Networked, OnChangedRender(nameof(SyncTime))]
+    private TickTimer _tickTimer {get; set; }
+
+    private void SyncTime()
+    {
+        var time = _tickTimer.RemainingTime(Runner);
+        if (time.HasValue)
+        {
+            OnTimeChanged?.Invoke(time.Value);
+        }
+    }
+    
+    public event Action<float> OnTimeChanged;
 
     public void StartWave()
     {
@@ -19,9 +32,10 @@ public class WaveManager : NetworkBehaviour
         {
             foreach (var group in _waves[_currentWave]._SpawnData)
             {
-                _jobs.Add(new SpawnJob( group.ObjectPrefab, group.SpawnDelay, group.SpawnCount, _spawnPoints, Runner));
+                _jobs.Add(new SpawnJob(group.ObjectPrefab, group.SpawnDelay, group.SpawnCount, _spawnPoints, Runner));
             }
         }
+
         _tickTimer = TickTimer.CreateFromSeconds(Runner, _waves[_currentWave].WaveTime);
     }
 
