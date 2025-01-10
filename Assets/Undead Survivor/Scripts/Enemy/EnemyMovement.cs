@@ -89,7 +89,7 @@ public class EnemyMovement : NetworkBehaviour
 
          if (_target.TryGetComponent(out HealthManager HealthManager))
          {
-             HealthManager.SubtractHP(_settings.AttackDamage);
+             HealthManager.SubtractHP(_settings.AttackDamage, PlayerRef.None);
              Debug.Log($"Враг атакует игрока {_target.name}, наносит {_settings.AttackDamage} урона");
          }
     }

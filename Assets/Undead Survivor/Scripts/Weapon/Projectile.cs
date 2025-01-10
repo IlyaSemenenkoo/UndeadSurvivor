@@ -36,9 +36,9 @@ public class Projectile : NetworkBehaviour
     {
         if (HasStateAuthority)
         {
-            if (collision.gameObject.TryGetComponent<HealthManager>(out var healthManager))
+            if (collision.gameObject.TryGetComponent(out EnemyHealthManager enemyHealthManager))
             {
-                healthManager.SubtractHP(_damage);
+                enemyHealthManager.SubtractHP(_damage,this.Object.InputAuthority);
                 DeleteBullet();
             }
         }

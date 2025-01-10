@@ -7,7 +7,6 @@ public abstract class WeaponeBaseType : NetworkBehaviour
     [SerializeField] protected Projectile _projectilePrefab;
     [SerializeField] protected Transform _shootPoint;
     [SerializeField] protected WeaponeSettings _settings;
-    //[SerializeField] protected 
     protected float _bulletRotation;
     
     private float _currentCulldown = 0;

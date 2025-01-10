@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Fusion;
 using UnityEngine;
 
 public class BombCollectible : BaseCollectibleType
@@ -23,7 +24,7 @@ public class BombCollectible : BaseCollectibleType
         Collider2D[] hits = Physics2D.OverlapCircleAll(this.transform.position, _damageRadius, _layer);
         foreach (var hit in hits)
         {
-            hit.GetComponent<HealthManager>().SubtractHP(_damage);
+            hit.GetComponent<HealthManager>().SubtractHP(_damage, PlayerRef.None);
         }
     }
 }

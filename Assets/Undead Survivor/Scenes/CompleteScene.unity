@@ -585,7 +585,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &137852770
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13146,6 +13146,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 675126925}
+  - component: {fileID: 675126926}
   m_Layer: 0
   m_Name: TimeBar
   m_TagString: Untagged
@@ -13174,6 +13175,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -91}
   m_SizeDelta: {x: 397.46997, y: 123.28003}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &675126926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675126924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bc2b345a51b7c948b68427fad3add23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeText: {fileID: 413029907}
 --- !u!1 &677011016
 GameObject:
   m_ObjectHideFlags: 0
@@ -13254,6 +13268,69 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerPrefab:
     RawGuidValue: 43689490414400540a361c37e9e786fb
+--- !u!1 &737584766
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 737584767}
+  - component: {fileID: 737584769}
+  - component: {fileID: 737584768}
+  m_Layer: 0
+  m_Name: Damage Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &737584767
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737584766}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2142603421}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &737584768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737584766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 3715291132
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 737584769}
+--- !u!114 &737584769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737584766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc78b22b66607e44f90707a727457707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &752277724
 GameObject:
   m_ObjectHideFlags: 0
@@ -20741,6 +20818,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1454439889}
+  - component: {fileID: 1454439890}
   m_Layer: 0
   m_Name: KillsBar
   m_TagString: Untagged
@@ -20770,6 +20848,19 @@ RectTransform:
   m_AnchoredPosition: {x: -340, y: -91}
   m_SizeDelta: {x: 397.46997, y: 123.28003}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1454439890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454439888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df11694f71ba3844ba5769f737f78efd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _killText: {fileID: 1048776018}
 --- !u!1 &1459033551
 GameObject:
   m_ObjectHideFlags: 0
@@ -28431,6 +28522,7 @@ Transform:
   - {fileID: 677011018}
   - {fileID: 951461853}
   - {fileID: 1131277650}
+  - {fileID: 737584767}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807

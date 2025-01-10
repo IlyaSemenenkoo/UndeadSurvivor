@@ -5,8 +5,8 @@ using UnityEngine;
 public abstract class HealthManager : NetworkBehaviour, IHealth
 {
     [SerializeField] private int _maxHealth = 100;
-    [SerializeField] private DeathManager _deathManager;
-    [Networked, OnChangedRender(nameof(SyncHp))] public int CurrentHealth { get; private set; } = 20;
+    [SerializeField] protected DeathManager _deathManager;
+    [Networked, OnChangedRender(nameof(SyncHp))] public int CurrentHealth { get; protected set; } = 20;
     protected abstract void SyncHp();
 
     
@@ -19,17 +19,8 @@ public abstract class HealthManager : NetworkBehaviour, IHealth
         
     }
 
-    public void SubtractHP(int damage)
-    {
-        if (!_deathManager.IsDead)
-        {
-            CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
-            if (CurrentHealth <= 0)
-            {
-                _deathManager.Die();
-            }
-        }
-    }
+    public abstract void SubtractHP(int damage, PlayerRef player);
+
 
     public void AddHP(int heal)
     {
