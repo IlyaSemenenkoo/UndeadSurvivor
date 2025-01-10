@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class SkinUI : MonoBehaviour
 {
-
     [SerializeField] private Image[] Skins;
     private void Awake()
     {
@@ -14,6 +13,7 @@ public class SkinUI : MonoBehaviour
         else
         {
             MakeVisible(0);
+            PlayerPrefs.SetInt("Skin", 0);
         }
     }
 
