@@ -10,6 +10,13 @@ public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
 {
     [SerializeField] private JoystickForMovement _joystickForMovement;
     [SerializeField] private JoystickForMovement _joystickForShoot;
+    
+    private LobbyUI _lobbyUI;
+
+    private void Awake()
+    {
+        _lobbyUI.OnGameStarteEvent += StartGame;
+    }
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     { }
@@ -44,7 +51,7 @@ public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
     
     private NetworkRunner _runner;
 
-    async void StartGame(GameMode mode)
+    async void StartGame(GameMode mode, string lobbyName)
     {
         // Create the Fusion runner and let it know that we will be providing user input
         _runner = new GameObject("NetworkRunner").AddComponent<NetworkRunner>();
@@ -62,24 +69,9 @@ public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
         await _runner.StartGame(new StartGameArgs()
         {
             GameMode = mode,
-            SessionName = "TestRoom",
+            SessionName = lobbyName,
             Scene = scene,
             SceneManager = _runner.gameObject.AddComponent<NetworkSceneManagerDefault>()
         });
-    }
-    
-    private void OnGUI()
-    {
-        if (_runner == null)
-        {
-            if (GUI.Button(new Rect(0,0,200,40), "Host"))
-            {
-                StartGame(GameMode.Host);
-            }
-            if (GUI.Button(new Rect(0,40,200,40), "Join"))
-            {
-                StartGame(GameMode.Client);
-            }
-        }
     }
 }

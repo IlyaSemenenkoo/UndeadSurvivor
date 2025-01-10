@@ -11,8 +11,6 @@ public class Menu : MonoBehaviour
     [SerializeField] private GameObject _changeSkinCanvas;
     [SerializeField] private GameObject _lobbyCanvas;
     
-    public event Action<GameMode> OnGameStarteEvent;
-    
     private void Awake()
     {
         _nameWarmingText.text = "";
@@ -43,8 +41,7 @@ public class Menu : MonoBehaviour
     {
         if (CheckNameInputField())
         {
-            GameMode mode = Enum.Parse<GameMode>(gameMode);
-            OnGameStarteEvent?.Invoke(mode);
+            PlayerPrefs.SetString("Mode", gameMode);
             _lobbyCanvas.SetActive(true);
             this.gameObject.SetActive(false);
         }
