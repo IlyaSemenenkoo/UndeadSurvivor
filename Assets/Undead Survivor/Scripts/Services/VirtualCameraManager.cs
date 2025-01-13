@@ -18,7 +18,6 @@ public class VirtualCameraManager : MonoBehaviour
             else if (_singleton != value)
             {
                 Destroy(value);
-                Debug.LogError($"There should only ever be one instance of {nameof(VirtualCameraManager)}!");
             }
         }
     }

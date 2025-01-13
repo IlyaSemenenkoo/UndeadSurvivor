@@ -9,13 +9,9 @@ public class AmmoBar : MonoBehaviour
     [SerializeField] private GameLogic _gameLogic;
     private AmmoHandler _ammoHandler;
 
-    private void Awake()
-    {
-        _gameLogic.OnPlayerJoined += PlayerJoined;
-    }
-
     private void OnEnable()
     {
+        _gameLogic.OnPlayerJoined += PlayerJoined;
         // make a condition of null
         _ammoHandler.OnAmmoChangedEvent += SetAmmo;
     }
@@ -26,7 +22,7 @@ public class AmmoBar : MonoBehaviour
         _ammoText.text = $"{ammo} / {magazineAmmo}";
     }
     
-    private void OnDisable()
+    private void OnDestroy()
     {
         // make a condition of null
         _ammoHandler.OnAmmoChangedEvent -= SetAmmo;
@@ -38,12 +34,6 @@ public class AmmoBar : MonoBehaviour
         {
             _ammoHandler = playerObject.GetBehaviour<AmmoHandler>();
             _ammoHandler.OnAmmoChangedEvent += SetAmmo;
-
-            Debug.Log($"Player {playerObject.name} joined");
-        }
-        else
-        {
-            Debug.LogError("Player is not in game logic");
         }
     }
 }

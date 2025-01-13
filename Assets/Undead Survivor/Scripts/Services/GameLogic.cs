@@ -18,7 +18,6 @@ public event Action<PlayerRef> OnPlayerJoined;
     }
     public void PlayerJoined(PlayerRef player)
     {
-        OnPlayerJoined?.Invoke(player);
         NetworkObject networkPlayerObject = null;
         if (HasStateAuthority)
         {
@@ -29,7 +28,6 @@ public event Action<PlayerRef> OnPlayerJoined;
                 {
                     var player = spawnedObject;
                     int num = Random.Range(0, _allReadySpawnedWeapone.Count-1);
-                    Debug.Log("Num = " + num);
                     player.GetComponent<WeaponeService>().SettingsSetup(_allReadySpawnedWeapone[num]);
                     if (_allReadySpawnedWeapone.Contains(num))
                     {
@@ -40,8 +38,7 @@ public event Action<PlayerRef> OnPlayerJoined;
             // Keep track of the player avatars for easy access
             _spawnedCharacters.Add(player, networkPlayerObject);
         }
-        Debug.Log("Player joined");
-        
+        OnPlayerJoined?.Invoke(player);
         _overlay.SetActive(true);
     }
 

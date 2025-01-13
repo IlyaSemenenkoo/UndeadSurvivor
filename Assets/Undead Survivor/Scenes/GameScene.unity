@@ -13072,7 +13072,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ammoText: {fileID: 461535383}
-  _gameLogic: {fileID: 0}
+  _gameLogic: {fileID: 677011020}
 --- !u!1 &934817111
 GameObject:
   m_ObjectHideFlags: 0

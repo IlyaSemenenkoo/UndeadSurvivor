@@ -17,7 +17,6 @@ public class DeathManager : MonoBehaviour
                 _animController.SetAnimation(AnimationType.died);
                 gameObject.GetComponent<Collider2D>().enabled = false;
             }
-            Debug.Log($"{gameObject.name} is dead ");
         }
     }
 }

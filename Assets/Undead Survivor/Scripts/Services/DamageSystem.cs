@@ -19,7 +19,6 @@ public class DamageSystem : NetworkBehaviour, IPlayerJoined, IPlayerLeft
             else if (_singleton != value)
             {
                 Destroy(value);
-                Debug.LogError($"There should only ever be one instance of {nameof(DamageSystem)}!");
             }
         }
     }
@@ -32,12 +31,10 @@ public class DamageSystem : NetworkBehaviour, IPlayerJoined, IPlayerLeft
 
     public void PlayerJoined(PlayerRef player)
     {
-        Debug.Log("PlayerJoined DamageSystem");
         if (HasStateAuthority)
         {
             _damagePlayerScore.Add(player, new DamageData( ));
         }
-        Debug.Log("PlayerJoined DamageSystem " + _damagePlayerScore.Count);
     }
 
     public void PlayerLeft(PlayerRef player)

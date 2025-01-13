@@ -14,7 +14,6 @@ public class WeaponeService : NetworkBehaviour
 
     public void SettingsSetup(int NumberOfWeapon)
     {
-        Debug.Log("SettingsSetup" + NumberOfWeapon);
         Runner.Spawn(_weaponsPrefab[NumberOfWeapon], _spawnPoint.transform.position, Quaternion.identity, Object.InputAuthority,
             (runner, spawnedObject) =>
             {
