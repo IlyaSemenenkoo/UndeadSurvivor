@@ -3,19 +3,21 @@ using Fusion.Sockets;
 using System;
 using System.Collections.Generic;
 using Fusion.Addons.Physics;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.SceneManagement;
 
 public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
 {
     [SerializeField] private JoystickForMovement _joystickForMovement;
     [SerializeField] private JoystickForMovement _joystickForShoot;
-    
-    private LobbyUI _lobbyUI;
 
     private void Awake()
     {
-        _lobbyUI.OnGameStarteEvent += StartGame;
+        GameMode mode = Enum.Parse<GameMode>(PlayerPrefs.GetString("GameMode"));
+        string lobbyName = PlayerPrefs.GetString("LobbyName");
+        StartGame(mode, lobbyName);
     }
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)

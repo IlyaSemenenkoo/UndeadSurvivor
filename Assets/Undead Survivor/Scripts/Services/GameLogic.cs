@@ -1,13 +1,21 @@
+using System;
 using Fusion;
 using UnityEngine;
 
 public class GameLogic : NetworkBehaviour, IPlayerJoined, IPlayerLeft
 {
     [SerializeField] private NetworkPrefabRef _playerPrefab;
+    [SerializeField] private GameObject _overlay;
     [Networked, Capacity(2)] private NetworkDictionary<PlayerRef, NetworkObject> _spawnedCharacters => default;
 
+    public event Action<PlayerRef> OnPlayerJoined;
+    public bool TryGetPlayer(PlayerRef playerRef, out NetworkObject networkObject)
+    {
+        return _spawnedCharacters.TryGet(playerRef, out networkObject);
+    }
     public void PlayerJoined(PlayerRef player)
     {
+        OnPlayerJoined?.Invoke(player);
         NetworkObject networkPlayerObject = null;
         if (HasStateAuthority)
         {
@@ -18,6 +26,8 @@ public class GameLogic : NetworkBehaviour, IPlayerJoined, IPlayerLeft
             _spawnedCharacters.Add(player, networkPlayerObject);
         }
         Debug.Log("Player joined");
+        
+        _overlay.SetActive(true);
     }
 
     public void PlayerLeft(PlayerRef player)

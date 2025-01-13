@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -5,8 +6,8 @@ public class TimeBar : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _timeText;
 
-    private WaveManager _waveManager;
-    
+    [SerializeField]private WaveManager _waveManager;
+
     private void OnEnable()
     {
         _waveManager.OnTimeChanged += SetTime;

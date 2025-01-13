@@ -24,7 +24,7 @@ public class Menu : MonoBehaviour
 
     private bool CheckNameInputField()
     {
-        if (_nameInputField != null)
+        if (_nameInputField.text == "")
         {
             _nameWarmingText.text = "Wrong Name!";
             return false;
@@ -41,7 +41,7 @@ public class Menu : MonoBehaviour
     {
         if (CheckNameInputField())
         {
-            PlayerPrefs.SetString("Mode", gameMode);
+            PlayerPrefs.SetString("GameMode", gameMode);
             _lobbyCanvas.SetActive(true);
             this.gameObject.SetActive(false);
         }

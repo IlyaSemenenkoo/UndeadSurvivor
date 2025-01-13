@@ -115,11 +115,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2094846904605570683}
+  - component: {fileID: 5028231751135453917}
   - component: {fileID: 1771245311473564094}
   - component: {fileID: 9135614197956148665}
   - component: {fileID: 6902002497631136826}
   - component: {fileID: 4114937498459954805}
-  - component: {fileID: 5028231751135453917}
   - component: {fileID: 7976322710490033387}
   - component: {fileID: 2053636117962086587}
   - component: {fileID: 580372925708219555}
@@ -147,6 +147,22 @@ Transform:
   - {fileID: 2719181948406293291}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5028231751135453917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6475283516069341468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 338e424ec1a8c5e4b83f2c71288fa685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 1771245311473564094}
+  _enemyTransform: {fileID: 2719181948406293291}
+  _settings: {fileID: 11400000, guid: 37d84abed2ac9a6458921db9d6dad030, type: 2}
+  _Rotation: {x: 0, y: 0, z: 0}
 --- !u!50 &1771245311473564094
 Rigidbody2D:
   serializedVersion: 4
@@ -213,8 +229,8 @@ MonoBehaviour:
   Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
-  - {fileID: 9135614197956148665}
   - {fileID: 5028231751135453917}
+  - {fileID: 9135614197956148665}
   - {fileID: 7976322710490033387}
   - {fileID: 580372925708219555}
   - {fileID: 2399073123267749861}
@@ -253,22 +269,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 0
---- !u!114 &5028231751135453917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6475283516069341468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 338e424ec1a8c5e4b83f2c71288fa685, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 0}
-  _enemyTransform: {fileID: 2719181948406293291}
-  _settings: {fileID: 11400000, guid: 37d84abed2ac9a6458921db9d6dad030, type: 2}
-  _Rotation: {x: 0, y: 0, z: 0}
 --- !u!114 &7976322710490033387
 MonoBehaviour:
   m_ObjectHideFlags: 0
