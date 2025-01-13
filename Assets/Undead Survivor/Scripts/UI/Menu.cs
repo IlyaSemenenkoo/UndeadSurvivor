@@ -1,5 +1,3 @@
-using System;
-using Fusion;
 using UnityEngine;
 using TMPro;
 

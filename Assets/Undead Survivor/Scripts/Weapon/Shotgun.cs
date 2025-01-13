@@ -3,7 +3,7 @@ using UnityEngine;
 public class Shotgun : WeaponeBaseType
 {   
     private Quaternion rotation;
-    protected override void Shoot(Vector2 direction)
+    public override void Shoot(Vector2 direction)
     {
         if(!HasInputAuthority) return;
         

@@ -3,43 +3,24 @@ using Fusion;
 
 public abstract class WeaponeBaseType : NetworkBehaviour
 {
-    [SerializeField] protected AmmoHandler _ammoHandler;
-    [SerializeField] protected Projectile _projectilePrefab;
     [SerializeField] protected Transform _shootPoint;
-    [SerializeField] protected WeaponeSettings _settings;
-    protected float _bulletRotation;
     
+    protected Projectile _projectilePrefab;
+    protected float _bulletRotation;
     private float _currentCulldown = 0;
+    private float _lifeTime;
+    private int _damage;
+    private float _speed;
 
-    public override void FixedUpdateNetwork()
+    public void Initialize(Projectile ProjectilePrefab, float LifeTime, float Speed, int Damage)
     {
-        if (_currentCulldown >= _settings.AttackCulldown)
-        {
-            if (GetInput(out NetworkInputData data))
-            {
-                if (data.BulletDirection != Vector2.zero)
-                {
-                    Debug.Log(data.BulletDirection.x + "," + data.BulletDirection.y);
-                    if (!_ammoHandler.MagazineIsEmpty())
-                    {
-                        _currentCulldown = 0;
-                        Shoot(data.BulletDirection);
-                        _ammoHandler.Shoot();
-                    }
-                    else
-                    {
-                        _ammoHandler.ChangeMagazine();
-                    }
-                }
-            }
-        }
-        else
-        {
-            _currentCulldown += Time.fixedDeltaTime;
-        }
+        _projectilePrefab = ProjectilePrefab;
+        _lifeTime = LifeTime;
+        _damage = Damage;
+        _speed = Speed;
     }
 
-    protected abstract void Shoot(Vector2 direction);
+    public abstract void Shoot(Vector2 direction);
 
 
     protected void SpawnBullet(Vector2 direction)
@@ -49,7 +30,7 @@ public abstract class WeaponeBaseType : NetworkBehaviour
             (runner, spawnedObject) =>
             {
                 var bullet = spawnedObject.GetComponent<Projectile>();
-                bullet.Initialize(direction, _settings.LifeTime, _settings.Damage, _settings.Speed);
+                bullet.Initialize(direction, _lifeTime, _damage, _speed);
             });
     }
     

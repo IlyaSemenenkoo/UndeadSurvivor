@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2076835234886212596}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.568161, y: 0.24625765, z: 0.0051858737}
+  m_LocalPosition: {x: 0.223, y: 0, z: 0}
   m_LocalScale: {x: 0.79999995, y: 0.79999995, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 2402236858995140624}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.568161, y: -0.24625765, z: -0.0051858737}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -79,7 +79,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b15967e85d3e8546be34c9b76d2a8b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 937bfd04f15ce6a408e84907b5d60133, type: 2}
 --- !u!114 &6400644407038359477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,10 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3398b8637906d25479f6b93d1a0d944f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammoHandler: {fileID: 6685931840094945780}
-  _projectilePrefab: {fileID: 2554075116843378213, guid: 6993d7bbad38f8a44934d5db2e1508fa, type: 3}
   _shootPoint: {fileID: 221378500953610317}
-  _settings: {fileID: 11400000, guid: 937bfd04f15ce6a408e84907b5d60133, type: 2}
 --- !u!114 &206175304764215318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +137,7 @@ Transform:
   m_GameObject: {fileID: 3223064159829173499}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.754, y: 0.03, z: 0.0051858737}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.79999995, y: 0.79999995, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

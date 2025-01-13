@@ -13,7 +13,7 @@ public class TimeBar : MonoBehaviour
         _waveManager.OnTimeChanged += SetTime;
     }
 
-    private void SetTime(float _time)
+    private void SetTime(int _time)
     {
         _timeText.text = _time.ToString();
     }

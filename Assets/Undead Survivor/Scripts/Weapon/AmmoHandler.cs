@@ -8,7 +8,6 @@ public class AmmoHandler : NetworkBehaviour
     [Networked, OnChangedRender(nameof(SyncAmmo))] private int AmmoAmount {get; set;}
     [Networked] private int MagazineAmount { get; set; }
     private int _maxAmmoInMagazine;
-    [SerializeField] private WeaponeSettings _settings;
     
     public event Action<int, int> OnAmmoChangedEvent;
 
@@ -20,11 +19,11 @@ public class AmmoHandler : NetworkBehaviour
         }
     }
     
-    public override void Spawned()
+    public void Initialize(int MaxAmmoInMagazine, int MagazineAmount)
     {
-        _maxAmmoInMagazine = _settings.MaxAmmoInMagazine;
-        MagazineAmount = _settings.MagazineAmount;
-        AmmoAmount = _settings.MaxAmmoInMagazine;
+        _maxAmmoInMagazine = MaxAmmoInMagazine;
+        this.MagazineAmount = MagazineAmount;
+        AmmoAmount = MaxAmmoInMagazine;
     }
 
     public bool MagazineIsEmpty()

@@ -18,3 +18,4 @@ MonoBehaviour:
   MaxAmmoInMagazine: 40
   MagazineAmount: 2
   Speed: 15
+  ProjectilePrefab: {fileID: 2554075116843378213, guid: 6993d7bbad38f8a44934d5db2e1508fa, type: 3}

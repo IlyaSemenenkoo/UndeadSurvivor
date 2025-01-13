@@ -11,14 +11,14 @@ public class WaveManager : NetworkBehaviour
     private int _currentWave;
     private bool _started;
 
-    [Networked, OnChangedRender(nameof(SyncTime))]
+    [Networked]
     private TickTimer _tickTimer {get; set; }
 
-    public event Action<float> OnTimeChanged;
+    public event Action<int> OnTimeChanged;
     private void SyncTime()
     {
         Debug.Log("SyncTime");
-        var time = _tickTimer.RemainingTime(Runner);
+        var time = (int?)_tickTimer.RemainingTime(Runner);
         if (time.HasValue)
         {
             OnTimeChanged?.Invoke(time.Value);
@@ -52,7 +52,7 @@ public class WaveManager : NetworkBehaviour
     {
         if (_started)
         {
-            if (Runner.IsServer)
+            if (HasStateAuthority)
             {
                 if (_tickTimer.Expired(Runner))
                 {
@@ -73,6 +73,7 @@ public class WaveManager : NetworkBehaviour
                     }
                 }
             }
+            SyncTime();
         }
     }
 }

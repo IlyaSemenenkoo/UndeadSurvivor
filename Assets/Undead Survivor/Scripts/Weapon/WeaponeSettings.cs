@@ -9,4 +9,5 @@ public class WeaponeSettings : ScriptableObject
     [SerializeField] public int MaxAmmoInMagazine;
     [SerializeField] public int MagazineAmount;
     [SerializeField] public float Speed;
+    [SerializeField] public Projectile ProjectilePrefab;
 }

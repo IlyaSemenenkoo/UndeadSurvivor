@@ -12,7 +12,7 @@ public class SkinChangedManager : NetworkBehaviour
     {
         if (HasInputAuthority)
         {
-            RPC_ChangedSkin(PlayerPrefs.GetInt("SkinID"));  
+            RPC_ChangedSkin(PlayerPrefs.GetInt("Skin"));  
         }
     }
     private void SyncAnimation()

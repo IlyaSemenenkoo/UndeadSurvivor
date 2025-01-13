@@ -3,9 +3,7 @@ using Fusion.Sockets;
 using System;
 using System.Collections.Generic;
 using Fusion.Addons.Physics;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
-using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.SceneManagement;
 
 public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
