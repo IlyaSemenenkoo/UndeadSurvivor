@@ -17,7 +17,6 @@ public class WaveManager : NetworkBehaviour
     public event Action<int> OnTimeChanged;
     private void SyncTime()
     {
-        Debug.Log("SyncTime");
         var time = (int?)_tickTimer.RemainingTime(Runner);
         if (time.HasValue)
         {
@@ -30,7 +29,6 @@ public class WaveManager : NetworkBehaviour
     public void StartWave()
     {
         _jobs.Clear();
-        Debug.Log(_currentWave + " current wave");
         if (_waves[_currentWave]._SpawnData.Count > 0)
         {
             foreach (var group in _waves[_currentWave]._SpawnData)

@@ -9,6 +9,7 @@ public class EnemyMovement : NetworkBehaviour
     [SerializeField] private Transform _enemyTransform;
     private Transform _target;
     [SerializeField] private EnemySettings _settings;
+    [SerializeField] private DeathManager _deathManager;
 
     private float lastAttackTime;
     
@@ -21,6 +22,10 @@ public class EnemyMovement : NetworkBehaviour
 
     public override void FixedUpdateNetwork()
     {
+        if (_deathManager.IsDead)
+        {
+            return;
+        }
         if (Runner.IsServer)
         {
             FindClosestPlayer();
@@ -68,11 +73,11 @@ public class EnemyMovement : NetworkBehaviour
         Vector3 TempRotation = Vector3.zero;
         if (_target.position.x < transform.position.x)
         {
-            TempRotation = new Vector3(1, 1, 1);
+            TempRotation = new Vector3(-1, 1, 1);
         }
         else if (_target.position.x > transform.position.x)
         {
-            TempRotation = new Vector3(-1, 1, 1);
+            TempRotation = new Vector3(1, 1, 1);
         }
 
         if (TempRotation != Vector3.zero && TempRotation != Rotation)

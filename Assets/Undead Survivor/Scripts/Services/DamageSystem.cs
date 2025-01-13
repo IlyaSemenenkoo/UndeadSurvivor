@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Fusion;
 using UnityEngine;
@@ -18,19 +19,25 @@ public class DamageSystem : NetworkBehaviour, IPlayerJoined, IPlayerLeft
             else if (_singleton != value)
             {
                 Destroy(value);
-                Debug.LogError($"There should only ever be one instance of {nameof(VirtualCameraManager)}!");
+                Debug.LogError($"There should only ever be one instance of {nameof(DamageSystem)}!");
             }
         }
     }
     public static DamageSystem _singleton;
 
+    private void Awake()
+    {
+        Singleton = this;
+    }
 
     public void PlayerJoined(PlayerRef player)
     {
+        Debug.Log("PlayerJoined DamageSystem");
         if (HasStateAuthority)
         {
-            _damagePlayerScore.Add(player, new DamageData());
+            _damagePlayerScore.Add(player, new DamageData( ));
         }
+        Debug.Log("PlayerJoined DamageSystem " + _damagePlayerScore.Count);
     }
 
     public void PlayerLeft(PlayerRef player)
@@ -46,25 +53,13 @@ public class DamageSystem : NetworkBehaviour, IPlayerJoined, IPlayerLeft
 
     public void AddDamage(PlayerRef player, float damage)
     {
-        if (_damagePlayerScore.TryGet(player,out DamageData damageData))
-        {
-            damageData.Damage += damage;
-        }
-        else
-        {
-            _damagePlayerScore.Add(player, new DamageData(){Damage = damage});
-        }
+        var damageData = _damagePlayerScore.Get(player);
+        damageData.SetDamage(damage);
     }
     
     public void AddKill(PlayerRef player)
     {
-        if (_damagePlayerScore.TryGet(player, out DamageData damageData))
-        {
-            damageData.Kill += 1;
-        }
-        else
-        {
-            _damagePlayerScore.Add(player, new DamageData(){Kill = 1});
-        }
+        var damageData = _damagePlayerScore.Get(player);
+        damageData.SetKill();
     }
 }

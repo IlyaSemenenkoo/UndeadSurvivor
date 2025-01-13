@@ -162,6 +162,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 1771245311473564094}
   _enemyTransform: {fileID: 2719181948406293291}
   _settings: {fileID: 11400000, guid: 37d84abed2ac9a6458921db9d6dad030, type: 2}
+  _deathManager: {fileID: 2053636117962086587}
   _Rotation: {x: 0, y: 0, z: 0}
 --- !u!50 &1771245311473564094
 Rigidbody2D:

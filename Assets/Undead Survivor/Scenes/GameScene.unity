@@ -12299,7 +12299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeText: {fileID: 413029907}
-  _waveManager: {fileID: 0}
+  _waveManager: {fileID: 951461855}
 --- !u!1 &677011016
 GameObject:
   m_ObjectHideFlags: 0
@@ -12360,7 +12360,7 @@ MonoBehaviour:
   m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 2839370495
+  SortKey: 1977226786
   ObjectInterest: 1
   Flags: 262145
   NestedObjects: []
@@ -12583,7 +12583,7 @@ MonoBehaviour:
   m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 282467545
+  SortKey: 3715291132
   ObjectInterest: 1
   Flags: 262145
   NestedObjects: []
@@ -13180,7 +13180,7 @@ MonoBehaviour:
   m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 4123052873
+  SortKey: 3260909164
   ObjectInterest: 1
   Flags: 262145
   NestedObjects: []

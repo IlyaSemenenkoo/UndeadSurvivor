@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class EnemyHealthManager : HealthManager
 {
-    protected override void SyncHp()
-    { }
-
     public override void SubtractHP(int damage, PlayerRef player)
     {
         if (!_deathManager.IsDead)

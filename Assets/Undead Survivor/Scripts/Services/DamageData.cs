@@ -1,28 +1,30 @@
 
 using Fusion;
 
+
 public struct DamageData : INetworkStruct
 {
-    public float Damage {
-        get
-        {
-            return Damage;
-        }
-        set
-        {
-            Damage = Damage + value;
-        } 
-    }
-    public int Kill 
+    public float damage;
+    public int kill;
+
+    public void SetDamage(float damage)
     {
-        get
-        {
-            return Kill;
-        }
-        set
-        {
-            Kill = Kill + value;
-        } 
+        this.damage += damage;
+    }
+
+    public void SetKill()
+    {
+        this.kill += 1;
+    }
+
+    public float GetDamage()
+    {
+        return damage;
+    }
+
+    public int GetKill()
+    {
+        return kill;
     }
 }
     

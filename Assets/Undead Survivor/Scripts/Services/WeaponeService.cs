@@ -37,7 +37,6 @@ public class WeaponeService : NetworkBehaviour
                 {
                     if (data.BulletDirection != Vector2.zero)
                     {
-                        Debug.Log(data.BulletDirection.x + "," + data.BulletDirection.y);
                         if (!_ammoHandler.MagazineIsEmpty())
                         {
                             _currentCulldown = 0;

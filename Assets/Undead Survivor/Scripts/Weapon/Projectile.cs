@@ -38,8 +38,10 @@ public class Projectile : NetworkBehaviour
         {
             if (collision.gameObject.TryGetComponent(out EnemyHealthManager enemyHealthManager))
             {
-                enemyHealthManager.SubtractHP(_damage,this.Object.InputAuthority);
+                var input = this.Object.InputAuthority;
                 DeleteBullet();
+                enemyHealthManager.SubtractHP(_damage,input);
+                
             }
         }
     }
