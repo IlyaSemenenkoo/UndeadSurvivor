@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 3415018548171803808}
   - component: {fileID: 2056422467170847474}
   - component: {fileID: 3178615454478528325}
-  - component: {fileID: 7066916898158764944}
   - component: {fileID: 1705577423084614951}
   - component: {fileID: 896751817037692409}
   - component: {fileID: 1025983416171102678}
   - component: {fileID: 2997315211112686322}
   - component: {fileID: 8150545397296982952}
+  - component: {fileID: 5614735422752183868}
   m_Layer: 7
   m_Name: SmallZombie
   m_TagString: Enemy
@@ -59,10 +59,10 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 3178615454478528325}
-  - {fileID: 7066916898158764944}
   - {fileID: 896751817037692409}
   - {fileID: 1025983416171102678}
   - {fileID: 2997315211112686322}
+  - {fileID: 5614735422752183868}
 --- !u!70 &2056422467170847474
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -110,25 +110,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 338e424ec1a8c5e4b83f2c71288fa685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _networkRigidbody: {fileID: 896751817037692409}
+  _rigidbody: {fileID: 1705577423084614951}
   _enemyTransform: {fileID: 7428311641626848438}
   _settings: {fileID: 11400000, guid: bc38729a96d5fcd499726243cd720baf, type: 2}
   _Rotation: {x: 0, y: 0, z: 0}
---- !u!114 &7066916898158764944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1599941686086224082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0f40af9bb91f454c9c87f4a3e684152, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 20
-  _deathManager: {fileID: 8150545397296982952}
-  _CurrentHealth: 20
 --- !u!50 &1705577423084614951
 Rigidbody2D:
   serializedVersion: 4
@@ -223,6 +208,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animController: {fileID: 1025983416171102678}
+--- !u!114 &5614735422752183868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599941686086224082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01ee1dd9168cc94da6df62189ee84f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 20
+  _deathManager: {fileID: 8150545397296982952}
+  _CurrentHealth: 20
 --- !u!1 &3519537341304734701
 GameObject:
   m_ObjectHideFlags: 0
