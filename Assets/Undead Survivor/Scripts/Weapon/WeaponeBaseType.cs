@@ -11,6 +11,7 @@ public abstract class WeaponeBaseType : NetworkBehaviour
     private float _lifeTime;
     private int _damage;
     private float _speed;
+    private Transform _spawnPoint;
 
     public void Initialize(Projectile ProjectilePrefab, float LifeTime, float Speed, int Damage)
     {

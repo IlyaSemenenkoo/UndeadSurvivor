@@ -5,9 +5,10 @@ using System.Collections;
 
 public class AmmoHandler : NetworkBehaviour
 {
-    [Networked, OnChangedRender(nameof(SyncAmmo))] private int AmmoAmount {get; set;}
-    [Networked] private int MagazineAmount { get; set; }
-    private int _maxAmmoInMagazine; 
+    [Networked, OnChangedRender(nameof(SyncAmmo))] private int AmmoAmount { get; set; }
+    [Networked] public int MagazineAmount { get; set; }
+    [Networked] private int MaxAmmoInMagazine { get; set; }
+    private bool _reload;
     
     public event Action<int, int> OnAmmoChangedEvent;
 
@@ -15,13 +16,13 @@ public class AmmoHandler : NetworkBehaviour
     {
         if (HasInputAuthority)
         {
-            OnAmmoChangedEvent?.Invoke(AmmoAmount, MagazineAmount * _maxAmmoInMagazine);
+            OnAmmoChangedEvent?.Invoke(AmmoAmount, MagazineAmount * MaxAmmoInMagazine);
         }
     }
     
     public void Initialize(int MaxAmmoInMagazine, int MagazineAmount)
     {
-        _maxAmmoInMagazine = MaxAmmoInMagazine;
+        this.MaxAmmoInMagazine = MaxAmmoInMagazine;
         this.MagazineAmount = MagazineAmount;
         AmmoAmount = MaxAmmoInMagazine;
     }
@@ -38,7 +39,7 @@ public class AmmoHandler : NetworkBehaviour
 
     public void ChangeMagazine()
     {
-        if (MagazineAmount > 0)
+        if (MagazineAmount > 0 && !_reload)
         {
             StartCoroutine(Reload());
         }
@@ -46,9 +47,11 @@ public class AmmoHandler : NetworkBehaviour
     
     private IEnumerator Reload()
     {
+        _reload = true;
         yield return new WaitForSeconds(1f);
-        AmmoAmount = _maxAmmoInMagazine;
+        AmmoAmount = MaxAmmoInMagazine;
         MagazineAmount -= 1;
+        _reload = false;
     }
 
     public void AddAmmo(int ammo)

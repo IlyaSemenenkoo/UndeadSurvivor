@@ -1,23 +1,34 @@
+using Fusion;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+public class HealthBar : NetworkBehaviour
 {
-    [SerializeField] private Slider slider;
+    [SerializeField] private Slider _slider;
+    [SerializeField] private GameLogic _gameLogic;
+    private PlayerHealthManager _playerHealthManager;
 
-    private PlayerHealthManager playerHealthManager;
-    private void OnEnable()
+    private void Awake()
     {
-        playerHealthManager.OnHpChangeEvent += SetHealth;
+        if (_gameLogic.TryGetPlayer(Runner.LocalPlayer, out var playerObject))
+        {
+            _playerHealthManager = playerObject.GetBehaviour<PlayerHealthManager>();
+            _slider.maxValue = _playerHealthManager.ReturnMaxHealth();
+            _playerHealthManager.OnHpChangeEvent += SetHealth;
+            
+        }
     }
 
-    private void SetHealth(int health)
+    private void SetHealth(PlayerRef playerRef, int health)
     {
-        slider.value = health;
+        if (playerRef == Runner.LocalPlayer)
+        {
+            _slider.value = health;
+        }
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
-        playerHealthManager.OnHpChangeEvent -= SetHealth;
+        _playerHealthManager.OnHpChangeEvent -= SetHealth;
     }
 }

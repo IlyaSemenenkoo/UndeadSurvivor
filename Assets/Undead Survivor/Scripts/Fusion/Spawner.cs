@@ -4,18 +4,24 @@ using System;
 using System.Collections.Generic;
 using Fusion.Addons.Physics;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
 {
     [SerializeField] private JoystickForMovement _joystickForMovement;
     [SerializeField] private JoystickForMovement _joystickForShoot;
+    [SerializeField] private Button _button;
 
     private void Awake()
     {
         GameMode mode = Enum.Parse<GameMode>(PlayerPrefs.GetString("GameMode"));
         string lobbyName = PlayerPrefs.GetString("LobbyName");
         StartGame(mode, lobbyName);
+        if (mode == GameMode.Host)
+        {
+            _button.gameObject.SetActive(true);
+        }
     }
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
@@ -73,5 +79,6 @@ public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
             Scene = scene,
             SceneManager = _runner.gameObject.AddComponent<NetworkSceneManagerDefault>()
         });
+        
     }
 }

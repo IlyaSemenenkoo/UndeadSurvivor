@@ -12,7 +12,6 @@ public class AmmoBar : NetworkBehaviour
     {
         if (_gameLogic.TryGetPlayer(Runner.LocalPlayer, out var playerObject))
         {
-            Debug.Log("Player joined");
             _ammoHandler = playerObject.GetBehaviour<AmmoHandler>();
             _ammoHandler.OnAmmoChangedEvent += SetAmmo;
             _ammoHandler.StartSync();

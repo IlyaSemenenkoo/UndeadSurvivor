@@ -1,7 +1,7 @@
 using Fusion;
 using UnityEngine;
 
-public class WeaponeService : NetworkBehaviour
+public class WeaponeService : NetworkBehaviour, IPlayerJoined
 {
     [SerializeField] private AmmoHandler _ammoHandler;
     [SerializeField] private GameObject[] _weaponsPrefab;
@@ -9,23 +9,34 @@ public class WeaponeService : NetworkBehaviour
     [SerializeField] private GameObject _spawnPoint;
     
     private WeaponeSettings _settings;
+    private NetworkObject _networkObject;
     private WeaponeBaseType _weaponeType;
-    private float _currentCulldown = 0;
+    private float _currentCulldown;
 
     public void SettingsSetup(int NumberOfWeapon)
     {
         Runner.Spawn(_weaponsPrefab[NumberOfWeapon], _spawnPoint.transform.position, Quaternion.identity, Object.InputAuthority,
             (runner, spawnedObject) =>
             {
-                _weaponeType = spawnedObject.GetComponent<WeaponeBaseType>();
-                _weaponeType.transform.SetParent(_spawnPoint.transform);
-                _weaponeType.transform.localPosition = new Vector3(-0.19f, -0.23f, 0);
-                _weaponeType.transform.localRotation = Quaternion.identity;
+                _networkObject = spawnedObject;
+                _weaponeType = _networkObject.GetComponent<WeaponeBaseType>();
                 _settings = _weaponeSettings[NumberOfWeapon];
                 _weaponeType.Initialize(_settings.ProjectilePrefab, _settings.LifeTime, _settings.Speed, _settings.Damage);
+                
             });
+        
         _ammoHandler.Initialize(_settings.MaxAmmoInMagazine, _settings.MagazineAmount);
     }
+    
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    private void RpcSetParent(NetworkObject networkObject)
+    {
+        var weaponTransform = networkObject.transform;
+        weaponTransform.SetParent(_spawnPoint.transform);
+        weaponTransform.localPosition = new Vector3(-0.19f, -0.23f, 0);
+        weaponTransform.localRotation = Quaternion.identity;
+    }
+
     public override void FixedUpdateNetwork()
     {
         if (_weaponeType != null)
@@ -54,5 +65,10 @@ public class WeaponeService : NetworkBehaviour
                 _currentCulldown += Time.fixedDeltaTime;
             }
         }
+    }
+
+    public void PlayerJoined(PlayerRef player)
+    {
+        RpcSetParent(_networkObject);
     }
 }

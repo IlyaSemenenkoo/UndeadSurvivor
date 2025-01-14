@@ -5,7 +5,7 @@ public class MedKitCollectible : BaseCollectibleType
 {
     [SerializeField] private int _health;
     
-    public override void OnCollisionEnter(Collision other)
+    public override void OnCollisionEnter2D(Collision2D other)
     {
         if(!Runner.IsServer) return;
 

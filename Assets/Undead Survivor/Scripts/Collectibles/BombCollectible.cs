@@ -8,7 +8,7 @@ public class BombCollectible : BaseCollectibleType
     [SerializeField] private int _damage;
     [SerializeField] private int _damageRadius;
     [SerializeField] private LayerMask _layer;
-    public override void OnCollisionEnter(Collision other)
+    public override void OnCollisionEnter2D(Collision2D other)
     {
         if(!Runner.IsServer) return;
 

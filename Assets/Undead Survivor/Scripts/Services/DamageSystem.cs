@@ -7,6 +7,8 @@ public class DamageSystem : NetworkBehaviour, IPlayerJoined, IPlayerLeft
 {
     [Networked, Capacity(2)] private NetworkDictionary<PlayerRef, DamageData> _damagePlayerScore => default;
     
+    public event Action<PlayerRef> OnKill;
+    
     public static DamageSystem Singleton
     {
         get => _singleton;
@@ -58,5 +60,13 @@ public class DamageSystem : NetworkBehaviour, IPlayerJoined, IPlayerLeft
     {
         var damageData = _damagePlayerScore.Get(player);
         damageData.SetKill();
+        RPC_KillSync(player);
     }
+
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    private void RPC_KillSync(PlayerRef player)
+    {
+        OnKill?.Invoke(player);
+    }   
+
 }

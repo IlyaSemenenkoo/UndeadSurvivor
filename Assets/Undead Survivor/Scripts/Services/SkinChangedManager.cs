@@ -12,8 +12,10 @@ public class SkinChangedManager : NetworkBehaviour
     {
         if (HasInputAuthority)
         {
-            RPC_ChangedSkin(PlayerPrefs.GetInt("Skin"));  
+            var skinId = PlayerPrefs.GetInt("Skin");
+            RPC_ChangedSkin(skinId);
         }
+        SyncAnimation();
     }
     private void SyncAnimation()
     {
@@ -21,7 +23,7 @@ public class SkinChangedManager : NetworkBehaviour
     }
 
     [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
-    public void RPC_ChangedSkin(int skinID)
+    private void RPC_ChangedSkin(int skinID)
     {
         SkinID = skinID;
     }

@@ -7,17 +7,22 @@ public class WaveManager : NetworkBehaviour
 {
     [SerializeField] private List<WaveSettings> _waves;
     [SerializeField] private Transform[] _spawnPoints;
+    [SerializeField] private GameObject _overlay;
     private List<SpawnJob> _jobs = new List<SpawnJob>();
     private int _currentWave;
     private bool _started;
-
-    [Networked]
-    private TickTimer _tickTimer {get; set; }
+    private void SyncOverlaysState(bool state)
+    {
+        _overlay.SetActive(state);
+    }
+    
+    [Networked, OnChangedRender(nameof(SyncTime))]
+    public TickTimer TickTimer {get; set; }
 
     public event Action<int> OnTimeChanged;
     private void SyncTime()
     {
-        var time = (int?)_tickTimer.RemainingTime(Runner);
+        var time = (int?)TickTimer.RemainingTime(Runner);
         if (time.HasValue)
         {
             OnTimeChanged?.Invoke(time.Value);
@@ -37,41 +42,56 @@ public class WaveManager : NetworkBehaviour
             }
         }
 
-        _tickTimer = TickTimer.CreateFromSeconds(Runner, _waves[_currentWave].WaveTime);
+        TickTimer = TickTimer.CreateFromSeconds(Runner, _waves[_currentWave].WaveTime);
     }
 
     public void StartSpawn()
     {
-        _started = true;
-        StartWave();
-        _currentWave++;
-    }    
+        if (HasStateAuthority)
+        {
+            _started = true;
+            StartWave();
+            _currentWave++;
+            RPC_SyncStartUI(true);
+        }
+    }
+
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    private void RPC_SyncStartUI(bool state)
+    {
+        SyncOverlaysState(state);
+    }
+    
     private void FixedUpdate()
     {
-        if (_started)
+        SyncTime();
+        if (!HasStateAuthority)
         {
-            if (HasStateAuthority)
+            return;
+        }
+
+        if (!_started)
+        {
+            return;
+        }
+
+        if (TickTimer.Expired(Runner))
+        {
+            if (_currentWave == 6)
             {
-                if (_tickTimer.Expired(Runner))
-                {
-                    if (_currentWave == 6)
-                    {
-                        _tickTimer = TickTimer.None;
-                        _currentWave = 0;
-                        _started = false;
-                    }
-                    StartWave();
-                    _currentWave++;
-                }
-                else
-                {
-                    foreach (var job in _jobs)
-                    {
-                        job.Tick();
-                    }
-                }
+                TickTimer = TickTimer.None;
+                _currentWave = 0;
+                _started = false;
             }
-            SyncTime();
+            StartWave();
+            _currentWave++;
+        }
+        else
+        {
+            foreach (var job in _jobs)
+            {
+                job.Tick();
+            }
         }
     }
 }

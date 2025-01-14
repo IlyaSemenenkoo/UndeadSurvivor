@@ -7,10 +7,6 @@ public class PlayerAnimController : BaseAnimController
 {
     [SerializeField] private NetworkMecanimAnimator _mecanimAnimator;
     [Networked, OnChangedRender(nameof(SyncAnimation))] public AnimationType CurrentAnimation { get; private set; }
-    public override void Spawned()
-    {
-        
-    }
 
     protected override void SyncAnimation()
     {
