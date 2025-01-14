@@ -10,8 +10,6 @@ public class GameLogic : NetworkBehaviour, IPlayerJoined, IPlayerLeft
     [SerializeField] private GameObject _overlay;
     [Networked, Capacity(2)] private NetworkDictionary<PlayerRef, NetworkObject> _spawnedCharacters => default;
     List<int> _allReadySpawnedWeapone = new List<int>{0, 1, 2};
-
-public event Action<PlayerRef> OnPlayerJoined;
     public bool TryGetPlayer(PlayerRef playerRef, out NetworkObject networkObject)
     {
         return _spawnedCharacters.TryGet(playerRef, out networkObject);
@@ -38,7 +36,6 @@ public event Action<PlayerRef> OnPlayerJoined;
             // Keep track of the player avatars for easy access
             _spawnedCharacters.Add(player, networkPlayerObject);
         }
-        OnPlayerJoined?.Invoke(player);
         _overlay.SetActive(true);
     }
 

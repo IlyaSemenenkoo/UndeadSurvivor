@@ -7,7 +7,7 @@ public class AmmoHandler : NetworkBehaviour
 {
     [Networked, OnChangedRender(nameof(SyncAmmo))] private int AmmoAmount {get; set;}
     [Networked] private int MagazineAmount { get; set; }
-    private int _maxAmmoInMagazine;
+    private int _maxAmmoInMagazine; 
     
     public event Action<int, int> OnAmmoChangedEvent;
 
@@ -54,5 +54,10 @@ public class AmmoHandler : NetworkBehaviour
     public void AddAmmo(int ammo)
     {
         MagazineAmount += ammo;
+    }
+
+    public void StartSync()
+    {
+        SyncAmmo();
     }
 }
