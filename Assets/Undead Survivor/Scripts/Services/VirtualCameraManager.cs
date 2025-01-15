@@ -1,9 +1,11 @@
 using Cinemachine;
+using Fusion;
 using UnityEngine;
 
 public class VirtualCameraManager : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera _virtualCamera;
+    [SerializeField] private GameLogic _gameLogic;
     private GameObject _target = null;
     
     public static VirtualCameraManager Singleton
@@ -36,5 +38,10 @@ public class VirtualCameraManager : MonoBehaviour
             _virtualCamera.Follow = target.transform;
             _virtualCamera.LookAt = target.transform;
         }
+    }
+
+    public void PlayerDead(PlayerRef playerRef)
+    {
+        FollowThis(_gameLogic.GetSecondPlayer(playerRef));
     }
 }

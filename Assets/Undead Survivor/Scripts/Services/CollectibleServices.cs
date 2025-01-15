@@ -5,13 +5,19 @@ public class CollectibleServices : NetworkBehaviour
 {
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (!HasStateAuthority)
+        if (!HasInputAuthority)
         {
             return;
         }
         if (other.gameObject.TryGetComponent(out BaseCollectibleType baseCollectibleType))
         {
-            baseCollectibleType.MakeImpact(GetComponent<NetworkObject>());
+            RPC_SyncCollectible(baseCollectibleType, gameObject.GetComponent<NetworkObject>());
         }
+    }
+
+    [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
+    private void RPC_SyncCollectible(BaseCollectibleType baseCollectibleType, NetworkObject player)
+    {
+        baseCollectibleType.MakeImpact(player);
     }
 }

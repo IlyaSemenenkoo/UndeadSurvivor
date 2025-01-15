@@ -1,7 +1,8 @@
 using System;
+using Fusion;
 using UnityEngine;
 
-public class DeathManager : MonoBehaviour
+public class DeathManager : NetworkBehaviour
 {
     [SerializeField] private BaseAnimController _animController;
     
@@ -16,6 +17,11 @@ public class DeathManager : MonoBehaviour
             {
                 _animController.SetAnimation(AnimationType.died);
                 gameObject.GetComponent<Collider2D>().enabled = false;
+                if (gameObject.GetComponent<PlayerMovement>() != null)
+                {
+                    GetComponent<WeaponeService>().PlayerDead();
+                    VirtualCameraManager.Singleton.PlayerDead(Runner.LocalPlayer);
+                }
             }
         }
     }

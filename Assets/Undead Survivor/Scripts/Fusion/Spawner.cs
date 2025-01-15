@@ -18,10 +18,6 @@ public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
         GameMode mode = Enum.Parse<GameMode>(PlayerPrefs.GetString("GameMode"));
         string lobbyName = PlayerPrefs.GetString("LobbyName");
         StartGame(mode, lobbyName);
-        if (mode == GameMode.Host)
-        {
-            _button.gameObject.SetActive(true);
-        }
     }
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
@@ -79,6 +75,9 @@ public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
             Scene = scene,
             SceneManager = _runner.gameObject.AddComponent<NetworkSceneManagerDefault>()
         });
-        
+        if (mode == GameMode.Host)
+        {
+            _button.gameObject.SetActive(true);
+        }
     }
 }

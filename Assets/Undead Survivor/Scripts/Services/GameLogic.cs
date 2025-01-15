@@ -50,4 +50,17 @@ public class GameLogic : NetworkBehaviour, IPlayerJoined, IPlayerLeft
             _spawnedCharacters.Remove(player);
         }
     }
+
+    public GameObject GetSecondPlayer(PlayerRef playerRef)
+    {
+        GameObject result = null;
+        foreach (var player in _spawnedCharacters)
+        {
+            if (!Equals(player.Key, playerRef))
+            {
+                result = player.Value.gameObject;
+            }
+        }
+        return result;
+    }
 }

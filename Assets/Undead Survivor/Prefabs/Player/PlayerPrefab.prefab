@@ -244,6 +244,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animController: {fileID: 2810915068746030522}
+  _gameLogic: {fileID: 0}
+  _weapone: {fileID: 0}
 --- !u!114 &3928027904648111236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,6 +266,7 @@ MonoBehaviour:
   - {fileID: 8624542399308471498}
   - {fileID: 1685494470029447466}
   - {fileID: 2810915068746030522}
+  - {fileID: 968251201812491468}
   - {fileID: 2744943984300297857}
   - {fileID: 2875232159086817547}
   - {fileID: 6916444653214533432}

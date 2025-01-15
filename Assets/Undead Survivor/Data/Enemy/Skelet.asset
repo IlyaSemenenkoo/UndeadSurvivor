@@ -16,7 +16,7 @@ MonoBehaviour:
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 8
-  DetectionRadius: 30
+  DetectionRadius: 15
   AttackRadius: 5
   AttackCulldown: 1.5
   AttackDamage: 5

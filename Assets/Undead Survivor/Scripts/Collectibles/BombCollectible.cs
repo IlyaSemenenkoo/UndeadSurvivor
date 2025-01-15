@@ -1,18 +1,43 @@
+using System.Linq;
 using Fusion;
 using UnityEngine;
 
 public class BombCollectible : BaseCollectibleType
 {
+    [SerializeField] private float _damageRadius;
     [SerializeField] private int _damage;
-    [SerializeField] private int _damageRadius;
     [SerializeField] private LayerMask _layer;
     public override void MakeImpact(NetworkObject impactedObject)
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(this.transform.position, _damageRadius, _layer);
-        foreach (var hit in hits)
+        var results = new Collider2D[100];
+        var size = Physics2D.OverlapCircleNonAlloc(transform.position, _damageRadius, results);
+
+        Debug.Log(size);
+        if (size < 0)
         {
-            hit.GetComponent<EnemyHealthManager>().SubtractHP(_damage, PlayerRef.None);
+            Debug.Log("Nothing");
         }
-        Destroy(gameObject);
+        else
+        {
+            var list = results.Where(result => result != null).ToList();
+            foreach (Collider2D col in list)
+            {
+                Debug.Log("Collided with " + col.gameObject.name);
+        
+                if (col.TryGetComponent(out EnemyHealthManager _enemyHealthManager))
+                {
+                    _enemyHealthManager.SubtractHP(_damage, impactedObject.InputAuthority);
+                    Debug.Log("Zombie hit");
+                }
+            }
+        }
+        
+        Destroy(gameObject, 0.3f);
+    }
+    
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _damageRadius);
     }
 }

@@ -6,7 +6,7 @@ using System.Collections;
 public class AmmoHandler : NetworkBehaviour
 {
     [Networked, OnChangedRender(nameof(SyncAmmo))] private int AmmoAmount { get; set; }
-    [Networked] public int MagazineAmount { get; set; }
+    [Networked] private int MagazineAmount { get; set; }
     [Networked] private int MaxAmmoInMagazine { get; set; }
     private bool _reload;
     
@@ -57,6 +57,15 @@ public class AmmoHandler : NetworkBehaviour
     public void AddAmmo(int ammo)
     {
         MagazineAmount += ammo;
+        if (HasStateAuthority)
+        {
+            RPC_SyncMagazine();
+        }
+    }
+
+    [Rpc(RpcSources.StateAuthority, RpcTargets.InputAuthority)]
+    private void RPC_SyncMagazine()
+    {
         StartSync();
     }
 

@@ -20,7 +20,7 @@ public class PlayerAnimController : BaseAnimController
         {
             RPC_ChangeAnimationType(type);
         }
-    }   
+    }  
 
     [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
     private void RPC_ChangeAnimationType(AnimationType type)

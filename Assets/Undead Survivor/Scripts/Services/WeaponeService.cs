@@ -71,4 +71,9 @@ public class WeaponeService : NetworkBehaviour, IPlayerJoined
     {
         RpcSetParent(_networkObject);
     }
+
+    public void PlayerDead()
+    {
+        Despawned(Runner, _networkObject);
+    }
 }

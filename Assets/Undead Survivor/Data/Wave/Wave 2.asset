@@ -20,5 +20,13 @@ MonoBehaviour:
   - ObjectPrefab:
       RawGuidValue: d1fb7b08fefab864cb615a0251cf54c7
     SpawnDelay: 5
+    SpawnCount: 1
+  - ObjectPrefab:
+      RawGuidValue: 5c71d4fae121a3c488087cfbcff7baae
+    SpawnDelay: 2
     SpawnCount: 5
+  - ObjectPrefab:
+      RawGuidValue: e255211e9d03c6b4e8f63286f56a7536
+    SpawnDelay: 2
+    SpawnCount: 1
   WaveTime: 35

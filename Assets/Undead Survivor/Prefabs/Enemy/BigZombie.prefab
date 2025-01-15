@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2719181948406293291}
   - component: {fileID: 7981514256288106223}
   - component: {fileID: 6445289218645886043}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,9 +124,9 @@ GameObject:
   - component: {fileID: 2053636117962086587}
   - component: {fileID: 580372925708219555}
   - component: {fileID: 2399073123267749861}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BigZombie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -233,6 +233,7 @@ MonoBehaviour:
   - {fileID: 5028231751135453917}
   - {fileID: 9135614197956148665}
   - {fileID: 7976322710490033387}
+  - {fileID: 2053636117962086587}
   - {fileID: 580372925708219555}
   - {fileID: 2399073123267749861}
 --- !u!70 &4114937498459954805
@@ -309,12 +310,12 @@ MonoBehaviour:
   m_Script: {fileID: 506319458, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Animator: {fileID: 0}
-  TotalWords: 0
+  Animator: {fileID: 6445289218645886043}
+  TotalWords: 1
   ApplyTiming: 2
   SyncSettings: 79
-  StateHashes: 
-  TriggerHashes: 
+  StateHashes: 00000000c0a47650b96ee5f644755380162f2ca9a1609f62d8aa0cc4
+  TriggerHashes: 00000000a1609f62
 --- !u!114 &2399073123267749861
 MonoBehaviour:
   m_ObjectHideFlags: 0

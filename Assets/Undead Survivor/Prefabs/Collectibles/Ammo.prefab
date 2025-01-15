@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1063845270418740580}
   - component: {fileID: 3577963815925488705}
   - component: {fileID: 6717429764007642462}
+  - component: {fileID: 1855008604280937775}
   m_Layer: 9
   m_Name: Ammo
   m_TagString: Untagged
@@ -66,6 +67,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 7902268479258653947}
+  - {fileID: 1855008604280937775}
 --- !u!212 &3577963815925488705
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -163,3 +165,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6111111, y: 0.6111111}
   m_EdgeRadius: 0
+--- !u!114 &1855008604280937775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9137736698958156524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 0

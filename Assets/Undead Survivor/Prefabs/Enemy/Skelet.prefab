@@ -128,6 +128,7 @@ MonoBehaviour:
   - {fileID: 866197942502545318}
   - {fileID: 8918489403710671589}
   - {fileID: 7642553111957436310}
+  - {fileID: 5986857071300223226}
   - {fileID: 7406074871522481949}
 --- !u!114 &8918489403710671589
 MonoBehaviour:
@@ -145,7 +146,7 @@ MonoBehaviour:
   TotalWords: 1
   ApplyTiming: 2
   SyncSettings: 79
-  StateHashes: 0000000020e23b685928a8ce1ae6174d48bc6864a1609f62d8aa0cc4
+  StateHashes: 00000000c0a47650b96ee5f644755380162f2ca9a1609f62d8aa0cc4
   TriggerHashes: 00000000a1609f62
 --- !u!114 &7642553111957436310
 MonoBehaviour:

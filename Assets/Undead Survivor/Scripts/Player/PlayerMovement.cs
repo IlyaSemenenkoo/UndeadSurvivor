@@ -39,6 +39,10 @@ public class PlayerMovement : NetworkBehaviour
                 _playerAnimController.SetAnimation(AnimationType.idle);
             }
         }
+        else if (_playerAnimController.CurrentAnimation == AnimationType.died)
+        {
+            _rigidbody.velocity = Vector2.zero;
+        }
     }
 
     private void ChangeRotation(Vector2 direction)

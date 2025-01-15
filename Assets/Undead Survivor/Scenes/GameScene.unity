@@ -7544,6 +7544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _virtualCamera: {fileID: 758372997}
+  _gameLogic: {fileID: 677011020}
 --- !u!114 &519420037
 MonoBehaviour:
   m_ObjectHideFlags: 0
