@@ -57,6 +57,7 @@ public class AmmoHandler : NetworkBehaviour
     public void AddAmmo(int ammo)
     {
         MagazineAmount += ammo;
+        StartSync();
     }
 
     public void StartSync()
