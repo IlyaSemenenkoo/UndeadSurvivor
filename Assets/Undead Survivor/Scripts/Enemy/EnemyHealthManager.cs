@@ -17,4 +17,7 @@ public class EnemyHealthManager : HealthManager
             }
         }
     }
+
+    public override void AddHP(int heal, PlayerRef player)
+    { }
 }

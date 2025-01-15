@@ -20,11 +20,5 @@ public abstract class HealthManager : NetworkBehaviour, IHealth
     public abstract void SubtractHP(int damage, PlayerRef player);
 
 
-    public void AddHP(int heal)
-    {
-        if (!_deathManager.IsDead)
-        {
-            CurrentHealth = Mathf.Min(CurrentHealth + heal, _maxHealth);
-        }
-    }
+    public abstract void AddHP(int heal, PlayerRef player);
 }

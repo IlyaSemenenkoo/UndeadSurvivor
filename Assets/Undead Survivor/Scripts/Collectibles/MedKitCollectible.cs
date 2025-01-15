@@ -7,7 +7,7 @@ public class MedKitCollectible : BaseCollectibleType
     
     public override void MakeImpact(NetworkObject impactedObject)
     {
-        impactedObject.GetComponent<PlayerHealthManager>().AddHP(_health);
+        impactedObject.GetComponent<PlayerHealthManager>().AddHP(_health, impactedObject.InputAuthority);
         Destroy(gameObject);
     }
 }

@@ -19,6 +19,17 @@ public class PlayerHealthManager : HealthManager
             }
         }
     }
+
+    public override void AddHP(int heal, PlayerRef player)
+    {
+        if (!_deathManager.IsDead)
+        {
+            CurrentHealth = Mathf.Min(CurrentHealth + heal, _maxHealth);
+            RPC_HpSync(player, CurrentHealth);
+        }
+    }
+
+
     [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
     private void RPC_HpSync(PlayerRef player, int currentHealth)
     {
