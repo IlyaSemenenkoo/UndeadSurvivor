@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   Damage: 10
-  LifeTime: 5
+  LifeTime: 0.7
   AttackCulldown: 0.5
   MaxAmmoInMagazine: 20
   MagazineAmount: 2

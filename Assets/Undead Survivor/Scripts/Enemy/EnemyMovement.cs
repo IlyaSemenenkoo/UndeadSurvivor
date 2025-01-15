@@ -24,6 +24,7 @@ public class EnemyMovement : NetworkBehaviour
     {
         if (_deathManager.IsDead)
         {
+            _rigidbody.velocity = Vector2.zero;
             return;
         }
         if (Runner.IsServer)
