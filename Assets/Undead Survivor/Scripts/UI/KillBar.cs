@@ -1,17 +1,18 @@
 using Fusion;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class KillBar : NetworkBehaviour
 {
     [SerializeField] private TextMeshProUGUI _killText;
-    [SerializeField] private DamageSystem _damageSystem;
+    [FormerlySerializedAs("_damageSystem")] [SerializeField] private PLayerDataSystem _pLayerDataSystem;
 
     private int _kills;
 
     private void OnEnable()
     {
-        _damageSystem.OnKill += SetKill;
+        _pLayerDataSystem.OnKill += SetKill;
     }
 
     private void SetKill(PlayerRef playerRef)
@@ -25,6 +26,6 @@ public class KillBar : NetworkBehaviour
 
     private void OnDisable()
     {
-        _damageSystem.OnKill -= SetKill;
+        _pLayerDataSystem.OnKill -= SetKill;
     }
 }

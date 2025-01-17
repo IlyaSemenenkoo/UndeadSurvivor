@@ -42,6 +42,7 @@ public class VirtualCameraManager : MonoBehaviour
 
     public void PlayerDead(PlayerRef playerRef)
     {
+        Debug.Log(playerRef + " " + _gameLogic.GetSecondPlayer(playerRef).GetComponent<NetworkObject>().InputAuthority);
         FollowThis(_gameLogic.GetSecondPlayer(playerRef));
     }
 }

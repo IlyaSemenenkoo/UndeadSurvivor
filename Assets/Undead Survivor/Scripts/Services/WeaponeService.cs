@@ -12,6 +12,7 @@ public class WeaponeService : NetworkBehaviour, IPlayerJoined
     private NetworkObject _networkObject;
     private WeaponeBaseType _weaponeType;
     private float _currentCulldown;
+    private Vector3 _spawnPosition = new(-0.19f, -0.23f, 0);
 
     public void SettingsSetup(int NumberOfWeapon)
     {
@@ -33,7 +34,7 @@ public class WeaponeService : NetworkBehaviour, IPlayerJoined
     {
         var weaponTransform = networkObject.transform;
         weaponTransform.SetParent(_spawnPoint.transform);
-        weaponTransform.localPosition = new Vector3(-0.19f, -0.23f, 0);
+        weaponTransform.localPosition = _spawnPosition;
         weaponTransform.localRotation = Quaternion.identity;
     }
 
@@ -74,6 +75,6 @@ public class WeaponeService : NetworkBehaviour, IPlayerJoined
 
     public void PlayerDead()
     {
-        Despawned(Runner, _networkObject);
+        Destroy(_networkObject);
     }
 }

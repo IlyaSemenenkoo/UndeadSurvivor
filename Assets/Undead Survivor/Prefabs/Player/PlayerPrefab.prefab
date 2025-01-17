@@ -244,8 +244,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animController: {fileID: 2810915068746030522}
-  _gameLogic: {fileID: 0}
-  _weapone: {fileID: 0}
 --- !u!114 &3928027904648111236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,8 +337,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 40
-  _deathManager: {fileID: 968251201812491468}
   _CurrentHealth: 40
+  _deathManager: {fileID: 968251201812491468}
 --- !u!114 &6916444653214533432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,7 +369,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b15967e85d3e8546be34c9b76d2a8b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _MagazineAmount: 0
 --- !u!114 &1885629366180539460
 MonoBehaviour:
   m_ObjectHideFlags: 0

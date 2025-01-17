@@ -12,11 +12,14 @@ public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
     [SerializeField] private JoystickForMovement _joystickForMovement;
     [SerializeField] private JoystickForMovement _joystickForShoot;
     [SerializeField] private Button _button;
+    private string _gameMode = "GameMode";
+    private string _lobbyName = "LobbyName";
+    private string _menuScene = "MenuScene";
 
     private void Awake()
     {
-        GameMode mode = Enum.Parse<GameMode>(PlayerPrefs.GetString("GameMode"));
-        string lobbyName = PlayerPrefs.GetString("LobbyName");
+        GameMode mode = Enum.Parse<GameMode>(PlayerPrefs.GetString(_gameMode));
+        string lobbyName = PlayerPrefs.GetString(_lobbyName);
         StartGame(mode, lobbyName);
     }
 
@@ -35,7 +38,11 @@ public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
         input.Set(data);
     }
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
-    public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason) { }
+
+    public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
+    {
+        SceneManager.LoadScene(_menuScene);
+    }
     public void OnConnectedToServer(NetworkRunner runner) { }
     public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason) { }
     public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token) { }

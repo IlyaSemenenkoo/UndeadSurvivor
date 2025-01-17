@@ -4,33 +4,37 @@ using UnityEngine.UI;
 public class SkinUI : MonoBehaviour
 {
     [SerializeField] private Image[] Skins;
+    
+    private Vector3 _defaultScale = new Vector3(3f, 3f, 3f);
+    private Vector3 _selectedScale = new Vector3(4f, 4f, 4f);
+    private string _skin = "Skin";
     private void Awake()
     {
-        if (PlayerPrefs.HasKey("Skin"))
+        if (PlayerPrefs.HasKey(_skin))
         {
-            MakeVisible(PlayerPrefs.GetInt("Skin"));
+            MakeVisible(PlayerPrefs.GetInt(_skin));
         }
         else
         {
             MakeVisible(0);
-            PlayerPrefs.SetInt("Skin", 0);
+            PlayerPrefs.SetInt(_skin, 0);
         }
     }
 
     public void ChangeSkin(int skin)
     {
         MakeVisible(skin);
-        PlayerPrefs.SetInt("Skin", skin);
+        PlayerPrefs.SetInt(_skin, skin);
     }
 
     private void MakeVisible(int skin)
     {
         for (int i = 0; i < Skins.Length; i++)
         {
-            Skins[i].transform.localScale = new Vector3(3, 3, 3);
+            Skins[i].transform.localScale = _defaultScale;
             if (i == skin)
             {
-                Skins[i].transform.localScale = new Vector3(4, 4, 4);
+                Skins[i].transform.localScale = _selectedScale;
             }
         }
     }

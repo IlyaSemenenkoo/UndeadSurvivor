@@ -121,9 +121,9 @@ GameObject:
   - component: {fileID: 6902002497631136826}
   - component: {fileID: 4114937498459954805}
   - component: {fileID: 7976322710490033387}
-  - component: {fileID: 2053636117962086587}
   - component: {fileID: 580372925708219555}
   - component: {fileID: 2399073123267749861}
+  - component: {fileID: 6479181371968237432}
   m_Layer: 7
   m_Name: BigZombie
   m_TagString: Enemy
@@ -162,7 +162,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 1771245311473564094}
   _enemyTransform: {fileID: 2719181948406293291}
   _settings: {fileID: 11400000, guid: 37d84abed2ac9a6458921db9d6dad030, type: 2}
-  _deathManager: {fileID: 2053636117962086587}
+  _deathManager: {fileID: 6479181371968237432}
   _Rotation: {x: 0, y: 0, z: 0}
 --- !u!50 &1771245311473564094
 Rigidbody2D:
@@ -233,7 +233,6 @@ MonoBehaviour:
   - {fileID: 5028231751135453917}
   - {fileID: 9135614197956148665}
   - {fileID: 7976322710490033387}
-  - {fileID: 2053636117962086587}
   - {fileID: 580372925708219555}
   - {fileID: 2399073123267749861}
 --- !u!70 &4114937498459954805
@@ -285,19 +284,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mecanimAnimator: {fileID: 580372925708219555}
   _CurrentAnimation: 1
---- !u!114 &2053636117962086587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6475283516069341468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f363a8ae2d63006409a7a06a4215d435, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animController: {fileID: 7976322710490033387}
 --- !u!114 &580372925708219555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,5 +315,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 30
-  _deathManager: {fileID: 2053636117962086587}
   _CurrentHealth: 30
+  _deathManager: {fileID: 6479181371968237432}
+--- !u!114 &6479181371968237432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6475283516069341468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19716c5ce4c77514a8d8afeb4f233b97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animController: {fileID: 7976322710490033387}
