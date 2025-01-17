@@ -338,8 +338,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 40
-  _deathManager: {fileID: 968251201812491468}
   _CurrentHealth: 40
+  _deathManager: {fileID: 968251201812491468}
 --- !u!114 &6916444653214533432
 MonoBehaviour:
   m_ObjectHideFlags: 0

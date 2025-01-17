@@ -9,10 +9,10 @@ public class EnemyMovement : NetworkBehaviour
     [SerializeField] private Transform _enemyTransform;
     private Transform _target;
     [SerializeField] private EnemySettings _settings;
-    [SerializeField] private DeathManager _deathManager;
+    [SerializeField] private EnemyDeathManager _deathManager;
 
     private float lastAttackTime;
-    
+
     [Networked, OnChangedRender(nameof(SyncRotation))] public Vector3 Rotation { get; private set;}
     
     private void SyncRotation()

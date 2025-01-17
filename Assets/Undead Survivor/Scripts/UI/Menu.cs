@@ -9,14 +9,18 @@ public class Menu : MonoBehaviour
     [SerializeField] private GameObject _changeSkinCanvas;
     [SerializeField] private GameObject _lobbyCanvas;
     
+    private string _name = "Name";
+    private string _wrongName = "Wrong Name!";
+    private string _gameMode = "GameMode";
+    
     private void Awake()
     {
         _nameWarmingText.text = "";
         _lobbyCanvas.SetActive(false);
         _changeSkinCanvas.SetActive(false);
-        if (PlayerPrefs.HasKey("Name"))
+        if (PlayerPrefs.HasKey(_name))
         {
-            _nameInputField.text = PlayerPrefs.GetString("Name");
+            _nameInputField.text = PlayerPrefs.GetString(_name);
         }
     }
 
@@ -24,12 +28,12 @@ public class Menu : MonoBehaviour
     {
         if (_nameInputField.text == "")
         {
-            _nameWarmingText.text = "Wrong Name!";
+            _nameWarmingText.text = _wrongName;
             return false;
         }
         else
         {
-            PlayerPrefs.SetString("Name", _nameInputField.text);
+            PlayerPrefs.SetString(_name, _nameInputField.text);
             _nameInputField.text = "";
             return true;
         }
@@ -39,7 +43,7 @@ public class Menu : MonoBehaviour
     {
         if (CheckNameInputField())
         {
-            PlayerPrefs.SetString("GameMode", gameMode);
+            PlayerPrefs.SetString(_gameMode, gameMode);
             _lobbyCanvas.SetActive(true);
             this.gameObject.SetActive(false);
         }

@@ -82,6 +82,7 @@ public class WaveManager : NetworkBehaviour
                 TickTimer = TickTimer.None;
                 _currentWave = 0;
                 _started = false;
+                
             }
             StartWave();
             _currentWave++;

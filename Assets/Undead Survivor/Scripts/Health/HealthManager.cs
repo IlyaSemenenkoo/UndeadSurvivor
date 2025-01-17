@@ -5,7 +5,6 @@ using UnityEngine;
 public abstract class HealthManager : NetworkBehaviour, IHealth
 {
     [SerializeField] protected int _maxHealth = 100;
-    [SerializeField] protected DeathManager _deathManager;
     [Networked] public int CurrentHealth { get; protected set; } = 20;
     
     public override void Spawned()

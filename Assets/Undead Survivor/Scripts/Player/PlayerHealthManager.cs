@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHealthManager : HealthManager
 {
     public event Action<PlayerRef, int> OnHpChangeEvent;
-    
+    [SerializeField] protected DeathManager _deathManager;
 
     public override void SubtractHP(int damage, PlayerRef player)
     {
@@ -34,8 +34,7 @@ public class PlayerHealthManager : HealthManager
             RPC_HpSync(player, CurrentHealth);
         }
     }
-
-
+    
     [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
     private void RPC_HpSync(PlayerRef player, int currentHealth)
     {
