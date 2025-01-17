@@ -1,12 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
+using Fusion;
 using UnityEngine;
 
 public class VirtualCameraManager : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera _virtualCamera;
+    [SerializeField] private GameLogic _gameLogic;
+    private GameObject _target = null;
     
     public static VirtualCameraManager Singleton
     {
@@ -20,7 +20,6 @@ public class VirtualCameraManager : MonoBehaviour
             else if (_singleton != value)
             {
                 Destroy(value);
-                Debug.LogError($"There should only ever be one instance of {nameof(VirtualCameraManager)}!");
             }
         }
     }
@@ -31,10 +30,19 @@ public class VirtualCameraManager : MonoBehaviour
         Singleton = this;
     }
 
-    public void FollowThis(Transform target)
+    public void FollowThis(GameObject target)
     {
-        Debug.Log("FollowThis");
-        _virtualCamera.Follow = target;
-        _virtualCamera.LookAt = target;
+        if (_target != target)
+        {
+            _target = target;
+            _virtualCamera.Follow = target.transform;
+            _virtualCamera.LookAt = target.transform;
+        }
+    }
+
+    public void PlayerDead(PlayerRef playerRef)
+    {
+        Debug.Log(playerRef + " " + _gameLogic.GetSecondPlayer(playerRef).GetComponent<NetworkObject>().InputAuthority);
+        FollowThis(_gameLogic.GetSecondPlayer(playerRef));
     }
 }

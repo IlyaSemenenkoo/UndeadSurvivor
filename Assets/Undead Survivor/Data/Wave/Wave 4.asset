@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8d5894bed1c4324e9fa91b3c6a1be87, type: 3}
+  m_Name: Wave 4
+  m_EditorClassIdentifier: 
+  _SpawnData:
+  - ObjectPrefab:
+      RawGuidValue: cb7b8762559e91b4997e1afc65a8ed09
+    SpawnDelay: 4
+    SpawnCount: 10
+  - ObjectPrefab:
+      RawGuidValue: d1fb7b08fefab864cb615a0251cf54c7
+    SpawnDelay: 6
+    SpawnCount: 8
+  - ObjectPrefab:
+      RawGuidValue: 3b3d560e2b6afd8489b3aedf8a6e28b3
+    SpawnDelay: 10
+    SpawnCount: 4
+  - ObjectPrefab:
+      RawGuidValue: 5c71d4fae121a3c488087cfbcff7baae
+    SpawnDelay: 10
+    SpawnCount: 5
+  WaveTime: 60

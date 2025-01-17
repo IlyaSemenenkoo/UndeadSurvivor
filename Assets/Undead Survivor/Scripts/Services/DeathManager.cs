@@ -1,27 +1,28 @@
 using System;
+using Fusion;
 using UnityEngine;
 
-public class DeathManager : MonoBehaviour
+public class DeathManager : NetworkBehaviour
 {
-    private PlayerAnimController _playerAnimController;
+    [SerializeField] private BaseAnimController _animController;
     
     public bool IsDead { get; private set; }
-
-    private void Awake()
-    {
-        _playerAnimController = GetComponent<PlayerAnimController>();
-    }
 
     public void Die()
     {
         if (!IsDead)
         {
             IsDead = true;
-            if (_playerAnimController != null)
+            if (_animController != null)
             {
-                _playerAnimController.SetAnimation(AnimationType.died);
+                _animController.SetAnimation(AnimationType.died);
+                gameObject.GetComponent<Collider2D>().enabled = false;
+                if (gameObject.GetComponent<PlayerMovement>() != null)
+                {
+                    GetComponent<WeaponeService>().PlayerDead();
+                    VirtualCameraManager.Singleton.PlayerDead(Runner.LocalPlayer);
+                }
             }
-            Debug.Log($"{gameObject.name} is dead ");
         }
     }
 }
