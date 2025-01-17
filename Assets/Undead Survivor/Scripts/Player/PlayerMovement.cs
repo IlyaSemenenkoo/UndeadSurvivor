@@ -11,7 +11,6 @@ public class PlayerMovement : NetworkBehaviour
     
     [Networked, OnChangedRender(nameof(SyncRotation))] public Vector3 Rotation { get; private set;}
     
-    
     private void SyncRotation()
     {
         _transform.transform.localScale = Rotation;

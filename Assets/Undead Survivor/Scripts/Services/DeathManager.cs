@@ -6,6 +6,8 @@ public class DeathManager : NetworkBehaviour
 {
     [SerializeField] private BaseAnimController _animController;
     
+    public event Action OnDeath;
+    
     public bool IsDead { get; private set; }
 
     public void Die()
@@ -24,5 +26,11 @@ public class DeathManager : NetworkBehaviour
                 }
             }
         }
+    }
+
+    public void PlayDeath(PlayerRef playerRef)
+    {
+        if(Runner.LocalPlayer == playerRef)
+            Die();
     }
 }

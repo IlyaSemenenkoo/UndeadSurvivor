@@ -15,9 +15,15 @@ public class PlayerHealthManager : HealthManager
             RPC_HpSync(player, CurrentHealth);
             if (CurrentHealth <= 0)
             {
-                _deathManager.Die();
+                RPC_PlayerDeath(player);
             }
         }
+    }
+
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    private void RPC_PlayerDeath(PlayerRef player)
+    {
+        _deathManager.PlayDeath(player);
     }
 
     public override void AddHP(int heal, PlayerRef player)
