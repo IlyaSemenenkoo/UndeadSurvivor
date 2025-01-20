@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerHealthManager : HealthManager
 {
+    [SerializeField] private DeathManager _deathManager;
     public event Action<PlayerRef, int> OnHpChangeEvent;
-    [SerializeField] protected DeathManager _deathManager;
+    
 
     public override void SubtractHP(int damage, PlayerRef player)
     {
@@ -16,6 +17,7 @@ public class PlayerHealthManager : HealthManager
             if (CurrentHealth <= 0)
             {
                 RPC_PlayerDeath(player);
+                PLayerDataSystem.Singleton.PlayerDead(player);
             }
         }
     }

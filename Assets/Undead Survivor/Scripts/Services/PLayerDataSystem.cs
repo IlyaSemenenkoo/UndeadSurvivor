@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Fusion;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ public class PLayerDataSystem : NetworkBehaviour, IPlayerJoined, IPlayerLeft
 {
     [SerializeField] private EndGameUI _endGameUI;
     [Networked, Capacity(2)] private NetworkDictionary<PlayerRef, PlayerData> _playerData => default;
-    private int _deadPLayer;
+    private List<PlayerRef> _deadPLayer = new List<PlayerRef>();
     private string _playerDeadResult = "Dead";
     private string _playerWinResult = "Win";
     
@@ -39,12 +40,18 @@ public class PLayerDataSystem : NetworkBehaviour, IPlayerJoined, IPlayerLeft
         if (HasStateAuthority)
         {
             _playerData.Add(player, new PlayerData( ));
+            SetName(player, PlayerPrefs.GetString("Name"));
         }
-
-        if (_playerData[player].GetName() != "")
+        else
         {
-            SetName(Runner.LocalPlayer, PlayerPrefs.GetString("Name"));
+            RPC_CheckName();
         }
+    }
+
+    [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
+    private void RPC_CheckName()
+    {
+        SetName(Runner.LocalPlayer, PlayerPrefs.GetString("Name"));
     }
 
     public void PlayerLeft(PlayerRef player)
@@ -94,8 +101,10 @@ public class PLayerDataSystem : NetworkBehaviour, IPlayerJoined, IPlayerLeft
     public void PlayerDead(PlayerRef player)
     {
         if(!HasStateAuthority) return;
-        _deadPLayer++;
-        if (_deadPLayer == _playerData.Count)
+        if(_deadPLayer.Contains(player)) return;
+        _deadPLayer.Add(player);
+        Debug.Log(player);
+        if (_deadPLayer.Count == _playerData.Count)
         {
             RPC_EndGame(_playerDeadResult);
         }
@@ -108,7 +117,7 @@ public class PLayerDataSystem : NetworkBehaviour, IPlayerJoined, IPlayerLeft
     }
 
     
-    [Rpc(RpcSources.StateAuthority, RpcTargets.InputAuthority)]
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
     private void RPC_EndGame(string result)
     {
         EndGame(result);
@@ -116,7 +125,7 @@ public class PLayerDataSystem : NetworkBehaviour, IPlayerJoined, IPlayerLeft
 
     private void EndGame(string result)
     {
-        _endGameUI.gameObject.SetActive(true);
+        _endGameUI.OnUI();
         _endGameUI.Initialize(result, _playerData);
     }
 }

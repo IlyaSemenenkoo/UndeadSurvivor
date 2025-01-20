@@ -4,7 +4,6 @@ using UnityEngine;
 public class EnemySettings : ScriptableObject
 {
     [SerializeField] public float Speed;
-    [SerializeField] public LayerMask PlayerLayer;
     [SerializeField] public float DetectionRadius;
     [SerializeField] public float AttackRadius;
     [SerializeField] public float AttackCulldown;

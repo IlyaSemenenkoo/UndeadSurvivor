@@ -8,16 +8,17 @@ public class WaveManager : NetworkBehaviour
     [SerializeField] private List<WaveSettings> _waves;
     [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] private GameObject _overlay;
+    [SerializeField] private GameObject _uiManager;
     private List<SpawnJob> _jobs = new List<SpawnJob>();
     private int _currentWave;
     private bool _started;
     private void SyncOverlaysState(bool state)
     {
         _overlay.SetActive(state);
+        _uiManager.SetActive(state);
     }
     
-    [Networked, OnChangedRender(nameof(SyncTime))]
-    public TickTimer TickTimer {get; set; }
+    [Networked, OnChangedRender(nameof(SyncTime))] private TickTimer TickTimer {get; set; }
 
     public event Action<int> OnTimeChanged;
     private void SyncTime()
@@ -61,19 +62,12 @@ public class WaveManager : NetworkBehaviour
     {
         SyncOverlaysState(state);
     }
-    
-    private void FixedUpdate()
+
+    public override void FixedUpdateNetwork()
     {
         SyncTime();
-        if (!HasStateAuthority)
-        {
-            return;
-        }
-
-        if (!_started)
-        {
-            return;
-        }
+        if (!HasStateAuthority) return;
+        if (!_started) return;
 
         if (TickTimer.Expired(Runner))
         {
@@ -82,7 +76,7 @@ public class WaveManager : NetworkBehaviour
                 TickTimer = TickTimer.None;
                 _currentWave = 0;
                 _started = false;
-                
+                PLayerDataSystem.Singleton.TimeEnded();
             }
             StartWave();
             _currentWave++;

@@ -1,3 +1,4 @@
+using System;
 using Fusion;
 using UnityEngine;
 
@@ -20,6 +21,7 @@ public class PlayerMovement : NetworkBehaviour
         if (HasInputAuthority)
         {
             VirtualCameraManager.Singleton.FollowThis(this.gameObject);
+            _rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         }
     }
 
@@ -47,7 +49,7 @@ public class PlayerMovement : NetworkBehaviour
     private void ChangeRotation(Vector2 direction)
     {
         Vector3 TempRotation = Vector3.zero;
-        if(!HasInputAuthority) return;
+        if (!HasInputAuthority) return;
         if (direction.x < 0)
         {
             TempRotation = new Vector3(-1, 1, 1);
@@ -68,5 +70,13 @@ public class PlayerMovement : NetworkBehaviour
     {
         Rotation = rotation;
         _transform.transform.localScale = rotation;
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            Debug.Log("Collision enter");
+        }
     }
 }

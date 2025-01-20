@@ -84,7 +84,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &866197942502545318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   TotalWords: 1
   ApplyTiming: 2
   SyncSettings: 79
-  StateHashes: 00000000c0a47650b96ee5f644755380162f2ca9a1609f62d8aa0cc4
+  StateHashes: 00000000c0a47650b96ee5f644755380162f2ca94126d25a38ec41fc
   TriggerHashes: 00000000a1609f62
 --- !u!114 &7642553111957436310
 MonoBehaviour:
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 20
   _CurrentHealth: 20
-  _deathManager: {fileID: 6605622675617521549}
+  _enemyDeathManager: {fileID: 6605622675617521549}
 --- !u!114 &6605622675617521549
 MonoBehaviour:
   m_ObjectHideFlags: 0

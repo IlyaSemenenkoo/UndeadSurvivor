@@ -1,3 +1,4 @@
+using Fusion;
 using TMPro;
 using UnityEngine;
 
@@ -13,4 +14,6 @@ public class PlayerPanel : MonoBehaviour
         _playerDamage.text = playerDamage.ToString();
         _playerKills.text = playerKills.ToString();
     }
+
+    
 }

@@ -1,4 +1,5 @@
 using System.ComponentModel.Design;
+using System.Linq;
 using Fusion;
 using Fusion.Addons.Physics;
 using UnityEngine; 
@@ -48,19 +49,32 @@ public class EnemyMovement : NetworkBehaviour
 
     private void FindClosestPlayer()
     {
-        Collider2D hit = Runner.GetPhysicsScene2D().OverlapCircle(this.transform.position, _settings.DetectionRadius, _settings.PlayerLayer);
+        var results = new Collider2D[100];
+        int size = Physics2D.OverlapCircleNonAlloc(transform.position, _settings.DetectionRadius, results);
 
-        if (hit != null)
+        Transform closestTarget = null;
+        float closestDistance = float.MaxValue;
+
+        for (int i = 0; i < size; i++)
         {
-            _target = hit.transform;
+            var hit = results[i];
+            if (hit != null && hit.TryGetComponent(out DeathManager deathManager) && !deathManager.IsDead)
+            {
+                float distance = Vector2.Distance(transform.position, hit.transform.position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestTarget = hit.transform;
+                }
+            }
         }
-        else
+
+        if (closestTarget != null)
         {
-            _target = null;
+            _target = closestTarget;
         }
-        
-        
     }
+
 
     private void MoveTowardsTarget()
     {

@@ -1,20 +1,21 @@
 
 using Fusion;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class EnemyHealthManager : HealthManager
 {
-    [SerializeField] protected EnemyDeathManager _deathManager;
+    [SerializeField] protected EnemyDeathManager _enemyDeathManager;
     public override void SubtractHP(int damage, PlayerRef player)
     {
-        if (!_deathManager.IsDead)
+        if (!_enemyDeathManager.IsDead)
         {
             CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
             PLayerDataSystem.Singleton.AddDamage(player, damage);
             if (CurrentHealth <= 0)
             {
                 PLayerDataSystem.Singleton.AddKill(player);
-                _deathManager.Die();
+                _enemyDeathManager.Die();
             }
         }
     }

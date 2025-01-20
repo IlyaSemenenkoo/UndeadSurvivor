@@ -1,5 +1,4 @@
 using Fusion;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class SkinChangedManager : NetworkBehaviour
@@ -9,11 +8,13 @@ public class SkinChangedManager : NetworkBehaviour
     [SerializeField] private AnimatorOverrideController[] _controllers;
     private string _skin = "Skin";
 
+
     public override void Spawned()
     {
         if (HasInputAuthority)
         {
             var skinId = PlayerPrefs.GetInt(_skin);
+            
             RPC_ChangedSkin(skinId);
         }
         SyncAnimation();

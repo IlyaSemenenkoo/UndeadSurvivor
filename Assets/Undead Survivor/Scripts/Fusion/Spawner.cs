@@ -62,19 +62,15 @@ public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
 
     async void StartGame(GameMode mode, string lobbyName)
     {
-        // Create the Fusion runner and let it know that we will be providing user input
         _runner = new GameObject("NetworkRunner").AddComponent<NetworkRunner>();
-        _runner.gameObject.AddComponent<RunnerSimulatePhysics2D>().ClientPhysicsSimulation = ClientPhysicsSimulation.SimulateAlways;
+        //_runner.gameObject.AddComponent<RunnerSimulatePhysics2D>().ClientPhysicsSimulation = ClientPhysicsSimulation.SimulateAlways;
         _runner.ProvideInput = true;
         _runner.AddCallbacks(this);
-        // Create the NetworkSceneInfo from the current scene
         var scene = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex);
         var sceneInfo = new NetworkSceneInfo();
         if (scene.IsValid) {
             sceneInfo.AddSceneRef(scene, LoadSceneMode.Additive);
         }
-
-        // Start or join (depends on gamemode) a session with a specific name
         await _runner.StartGame(new StartGameArgs()
         {
             GameMode = mode,

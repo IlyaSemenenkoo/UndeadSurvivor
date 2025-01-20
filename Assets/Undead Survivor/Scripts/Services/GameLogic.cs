@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Fusion;
 using UnityEngine;
@@ -25,15 +24,17 @@ public class GameLogic : NetworkBehaviour, IPlayerJoined, IPlayerLeft
                 (runner, spawnedObject) =>
                 {
                     var player = spawnedObject;
-                    int num = Random.Range(0, _allReadySpawnedWeapone.Count-1);
-                    player.GetComponent<WeaponeService>().SettingsSetup(_allReadySpawnedWeapone[num]);
-                    if (_allReadySpawnedWeapone.Contains(num))
+                    if (_allReadySpawnedWeapone.Count > 0)
                     {
-                        _allReadySpawnedWeapone.Remove(num);
+                        int randomIndex = Random.Range(0, _allReadySpawnedWeapone.Count);
+                        int selectedWeaponIndex = _allReadySpawnedWeapone[randomIndex];
+                        Debug.Log("Weapon spawned");
+                        player.GetComponent<WeaponeService>().SettingsSetup(selectedWeaponIndex);
+                        
+                        _allReadySpawnedWeapone.RemoveAt(randomIndex);
                     }
                 }
                 );
-            // Keep track of the player avatars for easy access
             _spawnedCharacters.Add(player, networkPlayerObject);
         }
         _overlay.SetActive(true);

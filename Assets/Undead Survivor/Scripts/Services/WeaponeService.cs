@@ -19,19 +19,21 @@ public class WeaponeService : NetworkBehaviour, IPlayerJoined
         Runner.Spawn(_weaponsPrefab[NumberOfWeapon], _spawnPoint.transform.position, Quaternion.identity, Object.InputAuthority,
             (runner, spawnedObject) =>
             {
+                Debug.Log("Weapon setup");
                 _networkObject = spawnedObject;
                 _weaponeType = _networkObject.GetComponent<WeaponeBaseType>();
                 _settings = _weaponeSettings[NumberOfWeapon];
                 _weaponeType.Initialize(_settings.ProjectilePrefab, _settings.LifeTime, _settings.Speed, _settings.Damage);
-                
+                Rpc_SetParent(_networkObject);
             });
         
         _ammoHandler.Initialize(_settings.MaxAmmoInMagazine, _settings.MagazineAmount);
     }
     
     [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-    private void RpcSetParent(NetworkObject networkObject)
+    private void Rpc_SetParent(NetworkObject networkObject)
     {
+        Debug.Log("Set Parent");
         var weaponTransform = networkObject.transform;
         weaponTransform.SetParent(_spawnPoint.transform);
         weaponTransform.localPosition = _spawnPosition;
@@ -70,11 +72,11 @@ public class WeaponeService : NetworkBehaviour, IPlayerJoined
 
     public void PlayerJoined(PlayerRef player)
     {
-        RpcSetParent(_networkObject);
+        Rpc_SetParent(_networkObject);
     }
 
     public void PlayerDead()
     {
-        Destroy(_networkObject);
+       Runner.Despawn(_networkObject);
     }
 }

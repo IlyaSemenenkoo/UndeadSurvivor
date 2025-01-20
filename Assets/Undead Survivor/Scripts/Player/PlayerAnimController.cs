@@ -13,18 +13,11 @@ public class PlayerAnimController : BaseAnimController
 
     public override void SetAnimation(AnimationType type)
     {
-        if(!HasInputAuthority) return;
+        if (!HasInputAuthority) return;
         if (CurrentAnimation != type)
         {
-            if(type == AnimationType.died) Debug.Log("died");
-            StartCoroutine(SendAnimation(type));
+            RPC_ChangeAnimationType(type);
         }
-    }
-
-    private IEnumerator SendAnimation(AnimationType type)
-    {
-        yield return new WaitForEndOfFrame();
-        RPC_ChangeAnimationType(type);
     }
 
     [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]

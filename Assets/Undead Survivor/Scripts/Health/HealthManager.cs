@@ -6,6 +6,7 @@ public abstract class HealthManager : NetworkBehaviour, IHealth
 {
     [SerializeField] protected int _maxHealth = 100;
     [Networked] public int CurrentHealth { get; protected set; } = 20;
+
     
     public override void Spawned()
     {
