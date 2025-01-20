@@ -20,14 +20,26 @@ public class PlayerMovement : NetworkBehaviour
     {
         if (HasInputAuthority)
         {
-            VirtualCameraManager.Singleton.FollowThis(this.gameObject);
+            VirtualCameraManager._singleton.FollowThis(this.gameObject);
             _rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         }
     }
 
     public override void FixedUpdateNetwork()
     {
-        if (GetInput(out NetworkInputData data) && _playerAnimController.CurrentAnimation != AnimationType.Died)
+        if (_playerAnimController.CurrentAnimation != AnimationType.Died)
+        {
+            MovePlayer();
+        }
+        else
+        {
+            _rigidbody.velocity = Vector2.zero;
+        }
+    }
+
+    private void MovePlayer()
+    {
+        if (GetInput(out NetworkInputData data))
         {
             ChangeRotation(data.MoveDirection);
             _rigidbody.velocity = data.MoveDirection * _speed;
@@ -41,7 +53,7 @@ public class PlayerMovement : NetworkBehaviour
             }
         }
     }
-
+    
     private void ChangeRotation(Vector2 direction)
     {
         Vector3 tempRotation = Vector3.zero;

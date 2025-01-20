@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Fusion;
 using UnityEngine;
 
-public class PLayerDataSystem : NetworkBehaviour, IPlayerJoined, IPlayerLeft
+public class PlayerDataSystem : NetworkBehaviour, IPlayerJoined, IPlayerLeft
 {
     [SerializeField] private EndGameUI _endGameUI;
     [Networked, Capacity(2)] private NetworkDictionary<PlayerRef, PlayerData> _playerData => default;
@@ -13,26 +13,18 @@ public class PLayerDataSystem : NetworkBehaviour, IPlayerJoined, IPlayerLeft
     
     public event Action<PlayerRef> OnKill;
     
-    public static PLayerDataSystem Singleton
+    private void CreateInstance()
     {
-        get => _singleton;
-        set
+        if (_singleton == null)
         {
-            if (value == null)
-                _singleton = null;
-            else if (_singleton == null)
-                _singleton = value;
-            else if (_singleton != value)
-            {
-                Destroy(value);
-            }
+            _singleton = this;
         }
     }
-    public static PLayerDataSystem _singleton;
+    public static PlayerDataSystem _singleton;
 
     private void Awake()
     {
-        Singleton = this;
+        CreateInstance();
     }
 
     public void PlayerJoined(PlayerRef player)

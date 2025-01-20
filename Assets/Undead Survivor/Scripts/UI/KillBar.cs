@@ -6,13 +6,13 @@ using UnityEngine.Serialization;
 public class KillBar : NetworkBehaviour
 {
     [SerializeField] private TextMeshProUGUI _killText;
-    [FormerlySerializedAs("_damageSystem")] [SerializeField] private PLayerDataSystem _pLayerDataSystem;
+    [SerializeField] private PlayerDataSystem _playerDataSystem;
 
     private int _kills;
 
     private void OnEnable()
     {
-        _pLayerDataSystem.OnKill += SetKill;
+        _playerDataSystem.OnKill += SetKill;
     }
 
     private void SetKill(PlayerRef playerRef)
@@ -26,6 +26,6 @@ public class KillBar : NetworkBehaviour
 
     private void OnDisable()
     {
-        _pLayerDataSystem.OnKill -= SetKill;
+        _playerDataSystem.OnKill -= SetKill;
     }
 }

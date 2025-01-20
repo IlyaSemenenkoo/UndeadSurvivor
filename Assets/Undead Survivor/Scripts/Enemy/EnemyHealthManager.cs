@@ -11,10 +11,10 @@ public class EnemyHealthManager : HealthManager
         if (!_enemyDeathManager.IsDead)
         {
             CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
-            PLayerDataSystem.Singleton.AddDamage(player, damage);
+            PlayerDataSystem._singleton.AddDamage(player, damage);
             if (CurrentHealth <= 0)
             {
-                PLayerDataSystem.Singleton.AddKill(player);
+                PlayerDataSystem._singleton.AddKill(player);
                 _enemyDeathManager.Die();
             }
         }

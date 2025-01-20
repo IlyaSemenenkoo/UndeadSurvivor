@@ -63,7 +63,7 @@ public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
     async void StartGame(GameMode mode, string lobbyName)
     {
         _runner = new GameObject("NetworkRunner").AddComponent<NetworkRunner>();
-        //_runner.gameObject.AddComponent<RunnerSimulatePhysics2D>().ClientPhysicsSimulation = ClientPhysicsSimulation.SimulateAlways;
+        _runner.gameObject.AddComponent<RunnerSimulatePhysics2D>().ClientPhysicsSimulation = ClientPhysicsSimulation.SimulateAlways;
         _runner.ProvideInput = true;
         _runner.AddCallbacks(this);
         var scene = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex);

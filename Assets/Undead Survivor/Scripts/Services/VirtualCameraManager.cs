@@ -8,26 +8,18 @@ public class VirtualCameraManager : MonoBehaviour
     [SerializeField] private GameLogic _gameLogic;
     private GameObject _target = null;
     
-    public static VirtualCameraManager Singleton
+    private void CreateInstance()
     {
-        get => _singleton;
-        set
+        if (_singleton == null)
         {
-            if (value == null)
-                _singleton = null;
-            else if (_singleton == null)
-                _singleton = value;
-            else if (_singleton != value)
-            {
-                Destroy(value);
-            }
+            _singleton = this;
         }
     }
     public static VirtualCameraManager _singleton;
 
     private void Awake()
     {
-        Singleton = this;
+        CreateInstance();
     }
 
     public void FollowThis(GameObject target)

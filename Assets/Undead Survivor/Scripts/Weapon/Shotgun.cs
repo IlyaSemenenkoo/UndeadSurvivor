@@ -9,9 +9,9 @@ public class Shotgun : WeaponeBaseType
     {
         for (int i = 0; i < _bulletCount; i++)
         {
-            _rotation = Quaternion.AngleAxis(_angle, Vector3.forward);
-            SpawnBullet(_rotation * direction);
-            _angle -= 15;
+            float angle = -15 + i * 15;
+            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            SpawnBullet(rotation * direction);
         }
     }
 }

@@ -10,7 +10,7 @@ public class EndGameUI : NetworkBehaviour
     [SerializeField] private GameObject _joystick;
     [SerializeField] private TextMeshProUGUI _resultText;
     [SerializeField] private GameObject _endGameCanvas ;
-    [SerializeField] private PLayerDataSystem _playerDataSystem;
+    [SerializeField] private PlayerDataSystem _playerDataSystem;
     
     public void Initialize(string resultText, NetworkDictionary<PlayerRef, PlayerData> data)
     {

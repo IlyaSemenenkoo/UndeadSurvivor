@@ -26,7 +26,7 @@ public class DeathManager : NetworkBehaviour
     {
         if (Runner.LocalPlayer == playerRef && !IsDead)
         {
-            VirtualCameraManager.Singleton.PlayerDead(Runner.LocalPlayer);
+            VirtualCameraManager._singleton.PlayerDead(Runner.LocalPlayer);
             IsDead = true;
         }
     }

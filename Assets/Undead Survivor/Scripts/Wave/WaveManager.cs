@@ -67,7 +67,7 @@ public class WaveManager : NetworkBehaviour
 
     public override void FixedUpdateNetwork()
     {
-        SyncTime();
+        RPC_SyncTime();
         if (!HasStateAuthority) return;
         if (!_started) return;
 
@@ -78,7 +78,7 @@ public class WaveManager : NetworkBehaviour
                 TickTimer = TickTimer.None;
                 _currentWave = 0;
                 _started = false;
-                PLayerDataSystem.Singleton.TimeEnded();
+                PlayerDataSystem._singleton.TimeEnded();
             }
             StartWave();
             _currentWave++;
@@ -90,5 +90,11 @@ public class WaveManager : NetworkBehaviour
                 job.Tick();
             }
         }
+    }
+    
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    private void RPC_SyncTime()
+    {
+        SyncTime();
     }
 }
