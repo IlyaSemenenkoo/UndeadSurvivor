@@ -176,7 +176,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!114 &8624542399308471498
 MonoBehaviour:
@@ -288,7 +288,7 @@ MonoBehaviour:
   TotalWords: 2
   ApplyTiming: 2
   SyncSettings: 79
-  StateHashes: 00000000c0a47650b96ee5f615b524dc47ef5bf544755380162f2ca9
+  StateHashes: 0000000020e23b685928a8ce2b1a167c794069557ada612028801e09
   TriggerHashes: 000000001ae6174d
 --- !u!70 &574486728026145693
 CapsuleCollider2D:

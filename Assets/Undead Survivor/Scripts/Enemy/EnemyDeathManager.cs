@@ -14,7 +14,7 @@ public class EnemyDeathManager : MonoBehaviour
             IsDead = true;
             if (_animController != null)
             {
-                _animController.SetAnimation(AnimationType.died);
+                _animController.SetAnimation(AnimationType.Died);
                 gameObject.GetComponent<Collider2D>().enabled = false;
                 Destroy(gameObject, 2f);
             }

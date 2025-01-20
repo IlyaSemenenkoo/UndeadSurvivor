@@ -27,41 +27,37 @@ public class PlayerMovement : NetworkBehaviour
 
     public override void FixedUpdateNetwork()
     {
-        if (GetInput(out NetworkInputData data) && _playerAnimController.CurrentAnimation != AnimationType.died)
+        if (GetInput(out NetworkInputData data) && _playerAnimController.CurrentAnimation != AnimationType.Died)
         {
             ChangeRotation(data.MoveDirection);
             _rigidbody.velocity = data.MoveDirection * _speed;
             if (data.MoveDirection != Vector2.zero)
             {
-                _playerAnimController.SetAnimation(AnimationType.run);
+                _playerAnimController.SetAnimation(AnimationType.Run);
             }
             else
             {
-                _playerAnimController.SetAnimation(AnimationType.idle);
+                _playerAnimController.SetAnimation(AnimationType.Idle);
             }
-        }
-        else if (_playerAnimController.CurrentAnimation == AnimationType.died)
-        {
-            _rigidbody.velocity = Vector2.zero;
         }
     }
 
     private void ChangeRotation(Vector2 direction)
     {
-        Vector3 TempRotation = Vector3.zero;
+        Vector3 tempRotation = Vector3.zero;
         if (!HasInputAuthority) return;
         if (direction.x < 0)
         {
-            TempRotation = new Vector3(-1, 1, 1);
+            tempRotation = new Vector3(-1, 1, 1);
         }
         else if (direction.x > 0)
         {
-            TempRotation = new Vector3(1, 1, 1);
+            tempRotation = new Vector3(1, 1, 1);
         }
 
-        if (TempRotation != Vector3.zero && TempRotation != Rotation)
+        if (tempRotation != Vector3.zero && tempRotation != Rotation)
         {
-            RPC_SyncRotation(TempRotation);
+            RPC_SyncRotation(tempRotation);
         }
     }
 

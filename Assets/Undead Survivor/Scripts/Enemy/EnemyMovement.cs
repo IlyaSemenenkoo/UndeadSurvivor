@@ -107,9 +107,9 @@ public class EnemyMovement : NetworkBehaviour
         if(!HasStateAuthority) return;
          lastAttackTime = Time.time;
 
-         if (_target.TryGetComponent(out HealthManager HealthManager))
+         if (_target.TryGetComponent(out HealthManager healthManager))
          {
-             HealthManager.SubtractHP(_settings.AttackDamage, _target.GetComponent<NetworkObject>().InputAuthority);
+             healthManager.SubtractHP(_settings.AttackDamage, _target.GetComponent<NetworkObject>().InputAuthority);
          }
     }
 }

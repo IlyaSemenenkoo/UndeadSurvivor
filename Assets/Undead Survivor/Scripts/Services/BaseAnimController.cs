@@ -3,9 +3,9 @@ using Fusion;
 
 public enum AnimationType 
 {
-    idle = 0,
-    run = 1,
-    died = 2,
+    Idle = 0,
+    Run = 1,
+    Died = 2,
 }
 
 public abstract class BaseAnimController : NetworkBehaviour

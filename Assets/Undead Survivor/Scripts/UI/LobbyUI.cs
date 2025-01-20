@@ -7,9 +7,9 @@ public class LobbyUI : MonoBehaviour
     [SerializeField] private TMP_InputField _lobbyNameInputField;
     [SerializeField] private TextMeshProUGUI _lobbyNameWarmingText;
 
-    private string _lobbyName = "LobbyName";
-    private string _wrongName = "Wrong Name!";
-    private string _gameScene = "GameScene";
+    private readonly string _lobbyName = "LobbyName";
+    private readonly string _wrongName = "Wrong Name!";
+    private readonly string _gameScene = "GameScene";
     
     public void StartGame()
     {

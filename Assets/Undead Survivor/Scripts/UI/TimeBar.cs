@@ -13,9 +13,9 @@ public class TimeBar : MonoBehaviour
         _waveManager.OnTimeChanged += SetTime;
     }
 
-    private void SetTime(int _time)
+    private void SetTime(int time)
     {
-        _timeText.text = _time.ToString();
+        _timeText.text = time.ToString();
     }
 
     private void OnDisable()

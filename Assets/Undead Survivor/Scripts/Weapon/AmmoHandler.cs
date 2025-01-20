@@ -20,11 +20,11 @@ public class AmmoHandler : NetworkBehaviour
         }
     }
     
-    public void Initialize(int MaxAmmoInMagazine, int MagazineAmount)
+    public void Initialize(int maxAmmoInMagazine, int magazineAmount)
     {
-        this.MaxAmmoInMagazine = MaxAmmoInMagazine;
-        this.MagazineAmount = MagazineAmount;
-        AmmoAmount = MaxAmmoInMagazine;
+        this.MaxAmmoInMagazine = maxAmmoInMagazine;
+        this.MagazineAmount = magazineAmount;
+        AmmoAmount = maxAmmoInMagazine;
     }
 
     public bool MagazineIsEmpty()

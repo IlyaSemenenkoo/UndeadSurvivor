@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class Shotgun : WeaponeBaseType
 {   
-    private Quaternion rotation;
+    private Quaternion _rotation;
     private float _angle = 15;
+    private int _bulletCount = 3;
     public override void Shoot(Vector2 direction)
     {
-        rotation = Quaternion.AngleAxis(_angle, Vector3.forward);
-        SpawnBullet(rotation * direction);
-        
-        SpawnBullet(direction);
-        
-        rotation = Quaternion.AngleAxis(-_angle, Vector3.forward);
-        SpawnBullet(rotation * direction);
+        for (int i = 0; i < _bulletCount; i++)
+        {
+            _rotation = Quaternion.AngleAxis(_angle, Vector3.forward);
+            SpawnBullet(_rotation * direction);
+            _angle -= 15;
+        }
     }
 }

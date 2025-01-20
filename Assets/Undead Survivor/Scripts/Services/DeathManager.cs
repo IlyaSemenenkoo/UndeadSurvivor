@@ -13,7 +13,7 @@ public class DeathManager : NetworkBehaviour
         if (_animController != null)
         {
             RPC_SyncDeath();
-            _animController.SetAnimation(AnimationType.died);
+            _animController.SetAnimation(AnimationType.Died);
             gameObject.GetComponent<Collider2D>().enabled = false;
             if (gameObject.GetComponent<PlayerMovement>() != null)
             {

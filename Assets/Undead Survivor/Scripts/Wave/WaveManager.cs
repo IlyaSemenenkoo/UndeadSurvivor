@@ -12,6 +12,8 @@ public class WaveManager : NetworkBehaviour
     private List<SpawnJob> _jobs = new List<SpawnJob>();
     private int _currentWave;
     private bool _started;
+
+    private int _lastWave = 6;
     private void SyncOverlaysState(bool state)
     {
         _overlay.SetActive(state);
@@ -35,9 +37,9 @@ public class WaveManager : NetworkBehaviour
     public void StartWave()
     {
         _jobs.Clear();
-        if (_waves[_currentWave]._SpawnData.Count > 0)
+        if (_waves[_currentWave].SpawnData.Count > 0)
         {
-            foreach (var group in _waves[_currentWave]._SpawnData)
+            foreach (var group in _waves[_currentWave].SpawnData)
             {
                 _jobs.Add(new SpawnJob(group.ObjectPrefab, group.SpawnDelay, group.SpawnCount, _spawnPoints, Runner));
             }
@@ -71,7 +73,7 @@ public class WaveManager : NetworkBehaviour
 
         if (TickTimer.Expired(Runner))
         {
-            if (_currentWave == 6)
+            if (_currentWave == _lastWave)
             {
                 TickTimer = TickTimer.None;
                 _currentWave = 0;
