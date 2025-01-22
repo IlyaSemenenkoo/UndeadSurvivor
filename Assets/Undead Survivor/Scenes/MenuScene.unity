@@ -12912,7 +12912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08a2a940e3a31344ba84cbc7e49b6cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Skins:
+  _skins:
   - {fileID: 493750726}
   - {fileID: 335600059}
   - {fileID: 603044084}

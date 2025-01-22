@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Fusion;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerDataSystem : NetworkBehaviour, IPlayerJoined, IPlayerLeft
@@ -28,23 +29,8 @@ public class PlayerDataSystem : NetworkBehaviour, IPlayerJoined, IPlayerLeft
     }
 
     public void PlayerJoined(PlayerRef player)
-    {
-        if (HasStateAuthority)
-        {
-            _playerData.Add(player, new PlayerData( ));
-            SetName(player, PlayerPrefs.GetString("Name"));
-        }
-        else
-        {
-            RPC_CheckName();
-        }
-    }
-
-    [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
-    private void RPC_CheckName()
-    {
-        SetName(Runner.LocalPlayer, PlayerPrefs.GetString("Name"));
-    }
+    { }
+    
 
     public void PlayerLeft(PlayerRef player)
     {
@@ -59,10 +45,15 @@ public class PlayerDataSystem : NetworkBehaviour, IPlayerJoined, IPlayerLeft
 
     public void SetName(PlayerRef player, string playerName)
     {
+        _playerData.Add(player, new PlayerData( ));
         var playerData = _playerData.Get(player);
         playerData.SetName(playerName);
         _playerData.Remove(player);
         _playerData.Add(player, playerData);
+        foreach (var data in _playerData)
+        {
+            Debug.Log($"name :  {data.Value.GetName()}");
+        }
     }
 
     public void AddDamage(PlayerRef player, float damage)

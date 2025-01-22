@@ -46,6 +46,6 @@ public class EndGameUI : NetworkBehaviour
     
     public void ExitGame()
     {
-        SceneManager.LoadScene(0);
+        Runner.Shutdown();
     }
 }

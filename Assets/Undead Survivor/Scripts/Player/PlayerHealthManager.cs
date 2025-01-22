@@ -16,8 +16,8 @@ public class PlayerHealthManager : HealthManager
             RPC_HpSync(player, CurrentHealth);
             if (CurrentHealth <= 0)
             {
-                RPC_PlayerDeath(player);
                 PlayerDataSystem._singleton.PlayerDead(player);
+                RPC_PlayerDeath(player);
             }
         }
     }

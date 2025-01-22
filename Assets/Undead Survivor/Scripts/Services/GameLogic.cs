@@ -37,6 +37,7 @@ public class GameLogic : NetworkBehaviour, IPlayerJoined, IPlayerLeft
                 );
             _spawnedCharacters.Add(player, networkPlayerObject);
         }
+        
         _overlay.SetActive(true);
     }
 
