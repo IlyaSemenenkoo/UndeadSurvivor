@@ -7,7 +7,6 @@ public class BombCollectible : BaseCollectibleType
     [SerializeField] private float _damageRadius;
     [SerializeField] private int _damage;
     [SerializeField] private LayerMask _layer;
-    private float _deathTime = 0.3f;
     public override void MakeImpact(NetworkObject impactedObject)
     {
         var results = new Collider2D[100];
@@ -21,7 +20,7 @@ public class BombCollectible : BaseCollectibleType
                 _enemyHealthManager.SubtractHP(_damage, impactedObject.InputAuthority);
             }
         }
-        Destroy(gameObject, _deathTime);
+        Destroy(gameObject);
     }
     
     private void OnDrawGizmosSelected()

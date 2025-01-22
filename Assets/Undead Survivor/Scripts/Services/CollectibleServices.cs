@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CollectibleServices : NetworkBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (!HasInputAuthority) return;
         if (other.gameObject.TryGetComponent(out BaseCollectibleType baseCollectibleType))

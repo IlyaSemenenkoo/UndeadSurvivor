@@ -92,7 +92,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -194,7 +194,7 @@ MonoBehaviour:
   TotalWords: 1
   ApplyTiming: 2
   SyncSettings: 79
-  StateHashes: 00000000c0a47650b96ee5f644755380162f2ca94126d25a38ec41fc
+  StateHashes: 0000000020e23b685928a8ce7ada612028801e094126d25a38ec41fc
   TriggerHashes: 00000000a1609f62
 --- !u!114 &5614735422752183868
 MonoBehaviour:

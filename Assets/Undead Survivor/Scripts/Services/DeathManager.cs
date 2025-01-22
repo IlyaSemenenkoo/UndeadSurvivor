@@ -4,6 +4,7 @@ using UnityEngine;
 public class DeathManager : NetworkBehaviour
 {
     [SerializeField] private BaseAnimController _animController;
+    [SerializeField] private WeaponeService _weaponeService;
     
     [Networked, OnChangedRender(nameof(DeadSync))]public bool IsDead { get; set; }
 
@@ -15,6 +16,7 @@ public class DeathManager : NetworkBehaviour
             RPC_SyncDeath();
             _animController.SetAnimation(AnimationType.Died);
             gameObject.GetComponent<Collider2D>().enabled = false;
+            
             if (gameObject.GetComponent<PlayerMovement>() != null)
             {
                 GetComponent<WeaponeService>().PlayerDead();
@@ -35,5 +37,6 @@ public class DeathManager : NetworkBehaviour
     private void RPC_SyncDeath()
     {
         IsDead = true;
+        _weaponeService.PlayerDead();
     }
 }

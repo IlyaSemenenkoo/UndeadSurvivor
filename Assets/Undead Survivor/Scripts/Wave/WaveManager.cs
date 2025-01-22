@@ -9,6 +9,7 @@ public class WaveManager : NetworkBehaviour
     [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] private GameObject _overlay;
     [SerializeField] private GameObject _uiManager;
+    [SerializeField] private GameObject _joystick;
     private List<SpawnJob> _jobs = new List<SpawnJob>();
     private int _currentWave;
     private bool _started;
@@ -18,6 +19,7 @@ public class WaveManager : NetworkBehaviour
     {
         _overlay.SetActive(state);
         _uiManager.SetActive(state);
+        _joystick.SetActive(state);
     }
     
     [Networked, OnChangedRender(nameof(SyncTime))] private TickTimer TickTimer {get; set; }
