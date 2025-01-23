@@ -3,14 +3,25 @@ using Fusion.Sockets;
 using System;
 using System.Collections.Generic;
 using Fusion.Addons.Physics;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
 {
     [SerializeField] private JoystickForMovement _joystickForMovement;
     [SerializeField] private JoystickForMovement _joystickForShoot;
+    [SerializeField] private Button _button;
+    private string _gameMode = "GameMode";
+    private string _lobbyName = "LobbyName";
+    private string _menuScene = "MenuScene";
+
+    private void Awake()
+    {
+        GameMode mode = Enum.Parse<GameMode>(PlayerPrefs.GetString(_gameMode));
+        string lobbyName = PlayerPrefs.GetString(_lobbyName);
+        StartGame(mode, lobbyName);
+    }
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     { }
@@ -27,7 +38,11 @@ public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
         input.Set(data);
     }
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
-    public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason) { }
+
+    public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
+    {
+        SceneManager.LoadScene(_menuScene);
+    }
     public void OnConnectedToServer(NetworkRunner runner) { }
     public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason) { }
     public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token) { }
@@ -45,42 +60,27 @@ public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
     
     private NetworkRunner _runner;
 
-    async void StartGame(GameMode mode)
+    async void StartGame(GameMode mode, string lobbyName)
     {
-        // Create the Fusion runner and let it know that we will be providing user input
         _runner = new GameObject("NetworkRunner").AddComponent<NetworkRunner>();
         _runner.gameObject.AddComponent<RunnerSimulatePhysics2D>().ClientPhysicsSimulation = ClientPhysicsSimulation.SimulateAlways;
         _runner.ProvideInput = true;
         _runner.AddCallbacks(this);
-        // Create the NetworkSceneInfo from the current scene
         var scene = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex);
         var sceneInfo = new NetworkSceneInfo();
         if (scene.IsValid) {
             sceneInfo.AddSceneRef(scene, LoadSceneMode.Additive);
         }
-
-        // Start or join (depends on gamemode) a session with a specific name
         await _runner.StartGame(new StartGameArgs()
         {
             GameMode = mode,
-            SessionName = "TestRoom",
+            SessionName = lobbyName,
             Scene = scene,
             SceneManager = _runner.gameObject.AddComponent<NetworkSceneManagerDefault>()
         });
-    }
-    
-    private void OnGUI()
-    {
-        if (_runner == null)
+        if (mode == GameMode.Host)
         {
-            if (GUI.Button(new Rect(0,0,200,40), "Host"))
-            {
-                StartGame(GameMode.Host);
-            }
-            if (GUI.Button(new Rect(0,40,200,40), "Join"))
-            {
-                StartGame(GameMode.Client);
-            }
+            _button.gameObject.SetActive(true);
         }
     }
 }

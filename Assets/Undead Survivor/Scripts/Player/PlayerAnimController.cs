@@ -1,33 +1,24 @@
-using System;
+using System.Collections;
 using Fusion;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public enum AnimationType 
+public class PlayerAnimController : BaseAnimController
 {
-    idle = 0,
-    run = 1,
-    died = 2,
-}
-
-public class PlayerAnimController : NetworkBehaviour
-{
-    [SerializeField]private NetworkMecanimAnimator _mecanimAnimator;
+    [SerializeField] private NetworkMecanimAnimator _mecanimAnimator;
     [Networked, OnChangedRender(nameof(SyncAnimation))] public AnimationType CurrentAnimation { get; private set; }
-
-    private void SyncAnimation()
+    protected override void SyncAnimation()
     {
         _mecanimAnimator.Animator.CrossFade(CurrentAnimation.ToString(), 0f);
     }
 
-    public void SetAnimation(AnimationType type)
+    public override void SetAnimation(AnimationType type)
     {
-        if(!HasInputAuthority) return;
+        if (!HasInputAuthority) return;
         if (CurrentAnimation != type)
         {
             RPC_ChangeAnimationType(type);
         }
-    }   
+    }
 
     [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
     private void RPC_ChangeAnimationType(AnimationType type)

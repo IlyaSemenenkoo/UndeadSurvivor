@@ -1,27 +1,42 @@
-using System;
+using Fusion;
 using UnityEngine;
 
-public class DeathManager : MonoBehaviour
+public class DeathManager : NetworkBehaviour
 {
-    private PlayerAnimController _playerAnimController;
+    [SerializeField] private BaseAnimController _animController;
+    [SerializeField] private WeaponeService _weaponeService;
     
-    public bool IsDead { get; private set; }
+    [Networked, OnChangedRender(nameof(DeadSync))]public bool IsDead { get; set; }
 
-    private void Awake()
+    private void DeadSync()
     {
-        _playerAnimController = GetComponent<PlayerAnimController>();
+        if (!HasInputAuthority) return;
+        if (_animController != null)
+        {
+            RPC_SyncDeath();
+            _animController.SetAnimation(AnimationType.Died);
+            gameObject.GetComponent<Collider2D>().enabled = false;
+            
+            if (gameObject.GetComponent<PlayerMovement>() != null)
+            {
+                GetComponent<WeaponeService>().PlayerDead();
+            }
+        }
     }
 
-    public void Die()
+    public void PlayDeath(PlayerRef playerRef)
     {
-        if (!IsDead)
+        if (Runner.LocalPlayer == playerRef && !IsDead)
         {
+            VirtualCameraManager._singleton.PlayerDead(Runner.LocalPlayer);
             IsDead = true;
-            if (_playerAnimController != null)
-            {
-                _playerAnimController.SetAnimation(AnimationType.died);
-            }
-            Debug.Log($"{gameObject.name} is dead ");
         }
+    }
+
+    [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
+    private void RPC_SyncDeath()
+    {
+        IsDead = true;
+        _weaponeService.PlayerDead();
     }
 }
